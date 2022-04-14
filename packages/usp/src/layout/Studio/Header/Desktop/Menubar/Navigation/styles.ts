@@ -19,7 +19,7 @@ export const menu = css`
       font-weight: bold;
       color: #fff;
       &.active{
-        color: blue;
+        border-bottom: 2px solid #fff;
       }
       &:hover{
 
@@ -38,7 +38,7 @@ export const menu = css`
           margin: 5px 20px;
           flex: initial;
           a.active {
-            color: blue;
+            border-bottom: 2px solid #fff;
           }
         }
       }

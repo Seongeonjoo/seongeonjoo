@@ -1,86 +1,95 @@
 import { css } from '@emotion/react';
 
 export const container = css`
+  margin-top: 131px;
   .blue{
     color: #4063EC;
-  }
-  .MuiTypography-root{
-    font-weight: 800;
   }
   .content{
     max-width: 1260px;
     width: 100%;
     margin: 0 auto;
-    padding: 80px 0px;
+    padding: 60px 0px;
   }
 `;
-
-export const maincont01 = css`
+export const sub_cont01 = css`
   position: relative;
-  overflow: hidden;
   display: block;
   color: #fff;
-  .main_benner{
+  .benner{
     text-align: center;
-    background-color: #170E47;
-    height: 840px;
+    background-color: #1F2437;
+    min-height: 460px;
     width: 100%;
-    > img {
-      position: absolute;
-      right: 50%;
-      transform: translateX(50%);
-      width: auto;
-      height: 840px;
-    }
   }
-  .main_txtbox{
-    position: absolute;
+  .txtbox{
+    margin: 0 auto;
     max-width: 1080px;
     width: 100%;
-    top: 270px;
-    left: 50%;
-    display: flex;
-    left: 50%;
-    transform: translateX(-50%);
-    .main_tit{
-      flex: 1;
-      font-size: 80px;
+    .tit{
+      font-size: 48px;
       letter-spacing: -4px;
-      font-weight: 100;
-      strong {
-        font-weight: 800;
-      }
+      font-weight: 800;
+      margin-bottom: 23px;
     }
     p {
-      flex: 1;    
-      position: absolute;
-      bottom: 0;
-      right: 0;
       line-height: 1.8;
     }
   }
-  .swifebtn{
+  .search_btn{
     position: absolute;
-    bottom: 70px;
-    right: -70px;
+    right: 0;
+    border-radius: 30px;
+    width: 140px;
+    height: 60px;
     background-color: #4063EC;
-    color: #fff;
-    border-radius: 100%;
-    line-height: 1.2;
-    font-size: 12px;
-    width: 80px;
-    height: 80px;
+    font-size: 18px;
+  }
+`;
+export const input_w = css`
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  .MuiOutlinedInput-root{
+    background-color: #fff;
+    border-radius: 30px;
+    height: 60px;
+    width: 780px;
+  }
+  .MuiInputLabel-root{
+    line-height: 1.8em;
+    padding-left: 30px;
+    color: #707070;
+    
+  }
+  .Mui-ficused{
+    display: none;
+    .MuiInputLabel-root{
+      display: none;
+      font-size: 0;
+    }
+    .MuiOutlinedInput-root{
+      font-size: 0;
+    }
   }
 `;
 
+export const bread = css`
+  
+`;
 
-export const maincont02 = css`
+export const table = css`
+  width: 780px;
+  margin: 0 auto;
+`;
+
+export const sub_cont02 = css`
   height: 840px;
-  background-color: #1F2437;
-  color: #fff;
+  background-color: #fff;
+  color: #333;
   .md_btn{
-    color: #fff;
-    border: 1px solid #fff;
+    color: #333;
+    border: 1px solid #333;
     width: 220px;
     height: 55px;
     border-radius: 0;

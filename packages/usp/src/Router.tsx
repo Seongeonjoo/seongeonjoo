@@ -24,12 +24,12 @@ function middleware(route: RouteType, type: MiddlewareType[]) {
 //* Route 설정
 export const ServiceRoutes: RouteType[] = [
   {
-    path: 'a',
+    path: 'a1',
     label: '공고알림',
     children: [
       middleware(
         {
-          path: 'a1',
+          path: 'notice',
           label: '모집공고',
           layout: 'studio',
           element: (
@@ -37,7 +37,7 @@ export const ServiceRoutes: RouteType[] = [
               route={{
                 label: 'home',
                 layout: 'studio',
-                element: React.lazy(() => import('~/pages/Home')),
+                element: React.lazy(() => import('~/pages/Notice')),
               }}
             />
           ),
@@ -292,7 +292,7 @@ export const UtilityRoutes: RouteType[] = [
   },
   {
     path: 'exist',
-    label: '기 가입 안내 (사업자)',
+    label: '기가입안내(사업자)',
     element: (
       <Loader
         route={{
@@ -342,6 +342,12 @@ export const UtilityRoutes: RouteType[] = [
       />
     ),
   },
+].map((route: Partial<RouteType>) => ({
+  ...route,
+  layout: 'space',
+})) as RouteType[];
+
+export const SampleRoute: RouteType[] = [
   {
     path: 'composampl',
     label: '컴포넌트 샘플',
@@ -355,12 +361,6 @@ export const UtilityRoutes: RouteType[] = [
       />
     ),
   },
-].map((route: Partial<RouteType>) => ({
-  ...route,
-  layout: 'space',
-})) as RouteType[];
-
-export const SampleRoute: RouteType[] = [
   {
     path: 'board',
     children: [
