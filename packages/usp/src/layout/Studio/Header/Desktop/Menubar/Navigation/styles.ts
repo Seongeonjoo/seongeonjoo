@@ -14,6 +14,7 @@ export const menu = css`
   li {
     line-height: 2;
     flex: 1;
+    background-color: #ccc;
     text-align: center;
     button {
       font-weight: bold;
@@ -39,7 +40,6 @@ export const menu = css`
           line-height: 1.6;
           margin: 5px 20px;
           flex: initial;
-          background-color: #ccc;
           a.active {
             border-bottom: 2px solid #fff;
           }
