@@ -11,18 +11,17 @@ export const container = css`
 
 export const menu = css`
   display: flex;
-  li{
+  li {
     line-height: 2;
     flex: 1;
     text-align: center;
-    a{
+    button {
       font-weight: bold;
       color: #fff;
       &.active{
         border-bottom: 2px solid #fff;
       }
-      &:hover{
-
+    }
       }
       > ul {
         display: flex;
@@ -42,6 +41,9 @@ export const menu = css`
           }
         }
       }
+    }
+    button.active + ul {
+      display: flex;
     }
   }
 `;

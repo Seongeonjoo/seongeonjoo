@@ -1,37 +1,49 @@
 import clsx from 'clsx';
-import {
-  NavLink, useLocation
-} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { RouteType, ServiceRoutes } from '~/Router';
 import * as styles from './styles';
 
-
 function Navigation(args: any) {
   const location = useLocation();
-  
+  const [selected, setSelected] = useState(location.pathname);
+
+  const syncLocation = () => {
+    setSelected(() => location.pathname);
+  };
+
+  //* location 시 변경 selected 초기화
+  useEffect(syncLocation, [location]);
+
+  const handleClick = (route: any) => {
+    setSelected(route.path);
+  };
   return (
     <nav role="navigation" css={styles.container} {...args}>
       <ul css={styles.menu}>
         {ServiceRoutes.map((row: RouteType, i: number) => {
-          const isActive = (row.children || []).some(
-            (route) => location.pathname === `/${row.path}/${route.path}`
-          );
+          const isActive = selected.indexOf(row.path!) > -1;
+
           return (
-            <li key={i}> 
-              <a className={clsx([!!isActive && 'active'])}>
+            <li key={i}>
+              <button
+                type="button"
+                className={clsx([!!isActive && 'active'])}
+                onClick={handleClick.bind(null, row)}
+              >
                 {row.label}
-                <ul>
-                  {(row.children || []).map((col: RouteType, k: number) => {
-                    return (
-                      <li key={k}>
-                        <NavLink to={`/${row.path}/${col.path}`} replace>
-                          {col.label}
-                        </NavLink>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </a>
+              </button>
+              <ul>
+                {(row.children || []).map((col: RouteType, k: number) => {
+                  return (
+                    <li key={k}>
+                      <NavLink to={`/${row.path}/${col.path}`} replace>
+                        {col.label}
+                      </NavLink>
+                    </li>
+                  );
+                })}
+              </ul>
             </li>
           );
         })}

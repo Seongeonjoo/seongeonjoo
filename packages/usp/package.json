@@ -6,7 +6,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@material-ui/icons": "^4.11.3",
-    "@mui/icons-material": "^5.5.1",
+    "@mui/icons-material": "^5.6.1",
     "@mui/lab": "^5.0.0-alpha.75",
     "@mui/material": "^5.5.2",
     "@mui/styles": "^5.5.3",
@@ -36,7 +36,7 @@
     "react-scripts": "5.0.0",
     "react-transition-group": "^4.4.2",
     "sass": "^1.49.9",
-    "swiper": "^8.0.7",
+    "swiper": "6.8.4",
     "swr": "^1.2.2",
     "typescript": "^4.4.2"
   },
@@ -44,6 +44,7 @@
     "start:dev": "REACT_APP_MODE=dev craco start ",
     "start:stage": "REACT_APP_MODE=stage craco start",
     "start": "REACT_APP_MODE=prod craco start",
+    "winStart": "set \"REACT_APP_MODE=prod\" && craco start",
     "build": "craco build"
   },
   "eslintConfig": {

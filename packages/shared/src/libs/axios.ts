@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import authentication from '../authentication';
 import async from 'async';

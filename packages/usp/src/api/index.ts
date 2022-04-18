@@ -23,5 +23,7 @@ export default async (req: any) => {
     } catch (e) {}
   }
 
-  return axios(req).then(res => res.data);
+  return req.responseType === 'blob'
+    ? axios(req)
+    : axios(req).then((res) => res.data);
 };

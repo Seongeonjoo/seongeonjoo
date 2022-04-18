@@ -162,7 +162,7 @@ function Home() {
       <div>
         <NavLink to="/mypage">마이페이지</NavLink>
       </div>
-      <div style={{height: 900}}></div>
+      <div style={{ height: 900 }}></div>
     </div>
   );
 }

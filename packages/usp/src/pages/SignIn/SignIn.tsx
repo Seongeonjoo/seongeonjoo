@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import authentication from 'shared/authentication';
-import { fetchSignIn } from '~/fetches';
+import { fetchSignIn,fetchSignInSns } from '~/fetches';
+import { UserType } from '~/fetches/fetchSignIn';
+import { SnsType } from '~/fetches/fetchSignInSns';
 import * as styles from './styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -34,12 +37,29 @@ const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 function SignIn() {
   const navigate = useNavigate();
   const location = useLocation();
+  const intialValues:UserType = { loginId: "", passwd: ""};
+  const [formValues, setFormValues] = useState(intialValues);
 
-  const handleClick = async () => {
+  // data 입력 바인딩
+  const handleChange = (e:any) => {
+    const { value, name } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value
+    });
+    console.log(formValues);
+  }
+
+  const handleClick = async (event:any) => {
+    // event.preventDefault();
+    // const data:any = new FormData(event.currentTarget);
+    if(!validate(event,formValues)){
+      return ;
+    };
     try {
-      const res = await fetchSignIn({ loginId: 'ymyoo', passwd: '1234' });
+      const res = await fetchSignIn({ loginId:formValues.loginId, passwd:formValues.passwd });
       authentication.set(res.data);
-
+  
       //* Ref 페이지가 있는 경우.
       const qs = new URLSearchParams(location.search);
       const next = qs.get('nextUrl');
@@ -52,6 +72,96 @@ function SignIn() {
       if (!!e.response && !!e.response.data) alert(e.response?.data.message);
     }
   };
+
+  // useEffect(() => {
+  //   if (Object.keys(formValues).length === 0 && isSubmitting) {
+  //     submitForm();
+  //   }
+  // }, [formValues]);
+
+  // login form validation check
+  const validate = (event:any,values:UserType) => {
+    console.log(values)
+    // id 확인
+    if (!values.loginId) {
+      // .. todo
+      // values.loginMsg = "ID 입력하세요!";
+      // values.isLogin = true;
+      alert("로그인 id 입력하세요!");
+      return false;
+    }
+    //비밀번호  확인
+    if (!values.passwd) {
+      // .. todo
+      // values.pwMsg = "PASSWORD 입력하세요!";
+      // values.isPasswd = true;
+      alert("passwd 입력하세요!");
+      return false;
+      //비밀번호의 길이(length)가 4글자 이하일 때
+    } else if (values.passwd.length < 4) {
+      alert("비밀번호는 4자리이상으로 입력하세요");
+      // .. todo
+      // values.pwMsg = "Password must be more than 4 characters";
+      return false;
+    }
+    return true;
+  };
+
+  // 카카오 로그인
+  const handleClickKakao = async (event:any) => {
+    // const data:any = new FormData(event.currentTarget);
+    const token = authentication.getToken();
+    const data: SnsType ={
+      accessToken: token,
+      code: "",
+      uri: "sns/kakao"
+    }
+    try {
+      const res = await fetchSignInSns(data);
+      authentication.set(res.data);
+  
+      //* Ref 페이지가 있는 경우.
+      const qs = new URLSearchParams(location.search);
+      const next = qs.get('nextUrl');
+      if (next) {
+        window.location.href = window.atob(next);
+      } else {
+        navigate('/');
+      }
+    } catch (e: any) {
+      if (!!e.response && !!e.response.data) alert(e.response?.data.message);
+    }
+  };
+  //  네이버 로그인
+  const handleClickNaver = async (event:any) => {
+    // const data:any = new FormData(event.currentTarget);
+  };
+  //  구글 로그인
+  const handleClickGoogle = async (event:any) => {
+    // const data:any = new FormData(event.currentTarget);
+    const token = authentication.getToken();
+    const data: SnsType ={
+      accessToken: token,
+      uri: "sns/google"
+    }
+    try {
+      const res = await fetchSignInSns(data);
+      authentication.set(res.data);
+  
+      //* Ref 페이지가 있는 경우.
+      const qs = new URLSearchParams(location.search);
+      const next = qs.get('nextUrl');
+      if (next) {
+        window.location.href = window.atob(next);
+      } else {
+        navigate('/');
+      }
+    } catch (e: any) {
+      if (!!e.response && !!e.response.data) alert(e.response?.data.message);
+    }
+  };
+
+
   return (
     <section css={styles.container}>
       <div css={styles.content}>
@@ -70,19 +180,28 @@ function SignIn() {
         >
           <div>
             <SignTextField
-              id="Signid" 
+              id="Signid"
+              name="loginId" 
               label="로그인" 
               variant="outlined"
+              value={formValues.loginId}
+              onChange={handleChange}
+              autoFocus
               fullWidth
+              required
             />
           </div>
           <div>
             <SignTextField
               id="Password"
+              name="passwd" 
               label="비밀번호"
               type="password"
+              value={formValues.passwd}
+              onChange={handleChange}
               autoComplete="current-password"
               fullWidth
+              required
             />
           </div>
         </Box>
@@ -125,12 +244,9 @@ function SignIn() {
           </Button>
         </Stack>
         <Stack spacing={4} direction="row" css={styles.snsicon}>
-          <Button className="kakao" variant="text" type="button" onClick={handleClick}>
-          </Button>
-          <Button className="naver" variant="text" type="button" onClick={handleClick}>
-          </Button>
-          <Button className="google" variant="text" type="button" onClick={handleClick}>
-          </Button>
+          <Button className="kakao" variant="text" type="button" onClick={handleClickKakao}></Button>
+          <Button className="naver" variant="text" type="button" onClick={handleClickNaver}></Button>
+          <Button className="google" variant="text" type="button" onClick={handleClickGoogle}></Button>
         </Stack>
         <div css={styles.error}>
           <p>아이디 혹은 비밀번호를 5회 잘못 입력하였습니다.</p>

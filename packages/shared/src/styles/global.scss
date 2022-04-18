@@ -7,16 +7,21 @@
     box-sizing: border-box;
   }
 }
-html,
+html{
+  width: 100%;
+  overflow-x: hidden;
+}
 body,
 #root {
   width: 100%;
-  overflow-x: hidden;
   > main {
-      section{
-        padding-top: 131px;
-      }
+    section{
+      padding-top: 131px;
+    }
   }
+}
+body{
+  padding: 0 !important;
 }
 ul,
 ol,
@@ -37,4 +42,26 @@ a {
 header {
   position: absolute;
   width: 100%;
+  top: 0;
+}
+.css-1xy4ick-container{
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px #707070;
+  border: none;
+}
+br.mo{
+  display: none;
+}
+br.pc{
+  display: block;
+}
+@media (min-width: 320px) and (max-width: 1000px) {
+  br.mo{
+      display: block;
+  }
+  br.pc{
+      display: none;
+  }
 }

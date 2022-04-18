@@ -1,7 +1,7 @@
-import { Component, ErrorInfo, ReactNode } from 'react';
+import {Component, ErrorInfo, ReactNode} from 'react';
 import InternalServerError from './InternalServerError';
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 interface State {
@@ -27,8 +27,8 @@ class ErrorBoundary extends Component<Props, State> {
       return <InternalServerError />;
     }
 
-    return this.props.children;
+    return this.props.children && this.props.children as JSX.Element
+    }
   }
-}
 
 export default ErrorBoundary;
