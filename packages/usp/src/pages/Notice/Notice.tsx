@@ -49,7 +49,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useEffect } from 'react';
 
 // 데이터작업은 임시입니다.
-
+ 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
