@@ -18,6 +18,9 @@ export const menu = css`
     button {
       font-weight: bold;
       color: #fff;
+      background-color: rgb(0, 0, 0, 0);
+      box-shadow: none;
+      border: none;
       &.active{
         border-bottom: 2px solid #fff;
       }
@@ -36,6 +39,7 @@ export const menu = css`
           line-height: 1.6;
           margin: 5px 20px;
           flex: initial;
+          background-color: #ccc;
           a.active {
             border-bottom: 2px solid #fff;
           }
