@@ -442,7 +442,7 @@ function Routes() {
           route={{
             label: 'home',
             layout: 'studio',
-            element: React.lazy(() => import('~/pages/index')),
+            element: React.lazy(() => import('~/pages/Index')),
           }}
         />
       ),
