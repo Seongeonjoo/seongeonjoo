@@ -36,7 +36,7 @@ function Home() {
                   <TableCell align="left"></TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0370101</TableCell>
-                  <TableCell align="left"><NavLink to="/Home">/Home</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/home">/Home</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 {/* 로그인, 회원가입 */}

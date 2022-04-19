@@ -406,8 +406,8 @@ export const SampleRoute: RouteType[] = [
     ),
   },
   {
-    path: 'composampl',
-    label: '컴포넌트 샘플',
+    path: 'home',
+    label: '홈',
     element: (
       <Loader
         route={{
