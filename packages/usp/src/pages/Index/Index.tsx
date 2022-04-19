@@ -53,7 +53,7 @@ function Home() {
                   <TableCell align="left">사업자 (팝업포함)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0011501</TableCell>
-                  <TableCell align="left"><NavLink to="/Consumer">/SignUp/Consumer</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/consumer">/SignUp/Consumer</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -61,7 +61,7 @@ function Home() {
                   <TableCell align="left">보호자 휴대폰인증</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0010901</TableCell>
-                  <TableCell align="left"><NavLink to="/Confirm">/SignUp/Confirm</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/confirm">/SignUp/Confirm</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -69,7 +69,7 @@ function Home() {
                   <TableCell align="left">기가입안내(사업자)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0011701</TableCell>
-                  <TableCell align="left"><NavLink to="/Exist">/SignUp/Exist</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/exist">/SignUp/Exist</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
