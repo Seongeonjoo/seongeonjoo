@@ -6,7 +6,7 @@ export const container = css`
   padding: 22px 40px;
   height: 80px;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid #707070;
   z-index: 999;
 `;

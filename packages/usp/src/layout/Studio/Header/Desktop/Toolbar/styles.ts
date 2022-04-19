@@ -4,7 +4,7 @@ export const container = css`
   position: relative;
   display: flex;
   padding: 17px 40px;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
   border-bottom: 1px solid #707070;
   justify-content: space-between;

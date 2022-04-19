@@ -405,6 +405,19 @@ export const SampleRoute: RouteType[] = [
       />
     ),
   },
+  {
+    path: 'composampl',
+    label: '컴포넌트 샘플',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/Home')),
+        }}
+      />
+    ),
+  },
 ];
 
 export const ReferenceRoutes: RouteType[] = [];
@@ -429,7 +442,7 @@ function Routes() {
           route={{
             label: 'home',
             layout: 'studio',
-            element: React.lazy(() => import('~/pages/Home')),
+            element: React.lazy(() => import('~/pages/index')),
           }}
         />
       ),

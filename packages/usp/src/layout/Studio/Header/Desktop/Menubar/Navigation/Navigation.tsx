@@ -25,15 +25,14 @@ function Navigation(args: any) {
           const isActive = selected.indexOf(row.path!) > -1;
 
           return (
-            <li key={i}>
+            <li key={i} className={clsx([!!isActive && 'active'])}>
               <button
                 type="button"
-                className={clsx([!!isActive && 'active'])}
                 onClick={handleClick.bind(null, row)}
               >
                 {row.label}
               </button>
-              <ul>
+              <ul css={styles.navsub}>
                 {(row.children || []).map((col: RouteType, k: number) => {
                   return (
                     <li key={k}>

@@ -14,25 +14,20 @@ export const menu = css`
   li {
     line-height: 2;
     flex: 1;
-    background-color: #ccc;
     text-align: center;
     button {
       font-weight: bold;
       color: #fff;
-      background-color: rgb(0, 0, 0, 0);
-      box-shadow: none;
-      border: none;
-      &.active{
-        border-bottom: 2px solid #fff;
-      }
+      background-color: rgba(0,0,0,0);
+      border: 0;
     }
-      }
+    &.active, &:hover{
       > ul {
         display: flex;
         position: absolute;
         bottom: -40px;
         left: 0;
-        background-color: #ccc;
+        background-color: #fff;
         height: 40px;
         justify-content: center;
         width: 100%;
@@ -45,9 +40,15 @@ export const menu = css`
           }
         }
       }
+      button {
+        border-bottom: 2px solid #fff;
+      }
     }
-    button.active + ul {
-      display: flex;
+    > ul {
+      display: none;
     }
   }
+`;
+export const navsub = css`
+
 `;
