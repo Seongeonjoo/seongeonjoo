@@ -1,16 +1,15 @@
-// 공고알림/ -> 공지사항 페이지
+// 커뮤니티/ ->  시설예약 페이지
 // import React from "react"
 import * as styles from './styles';
 import {CssBaseline,Container} from '@mui/material';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-function Announcement() {
+function OneByOneInquiry() {
 
   return (
       <Container component="main" maxWidth="xs" css={styles.container}>
         <CssBaseline />
-        <h1>공지사항</h1>
+        <h1>시설예약</h1>
       </Container>
   );
 }
 
-export default Announcement;
+export default OneByOneInquiry;

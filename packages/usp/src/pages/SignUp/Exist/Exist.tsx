@@ -22,7 +22,7 @@ function Confirm() {
         <Box sx={{mb: 7, maxWidth: 480, margin: '0 auto'}}>
           <div className="confirm_tit">
             <div><strong>(주) 한국정보통신</strong> 님</div>
-            <p>이미 인증하신 사업자 등록번호로 가입한 계정이 있습니다.</p>
+            <p>이미 인증하신 사업자 등록번호로<br className="mo"/> 가입한 계정이 있습니다.</p>
           </div>
           <Box sx={{ flex: 1, marginTop: 4, marginBottom: 10, }} css={styles.box_ara}>
             <Card sx={{ mb: 0.2, borderRadius: '20px 20px 0 0' }}>

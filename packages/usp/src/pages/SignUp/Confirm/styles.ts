@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 export const container = css`
   position: relative;
   background-color: #1f2437;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const backPass = css`
@@ -25,6 +25,7 @@ left: 0;
 export const content = css`
   position: relative;
   color: #fff;
+  background-color: #1f2437;
   padding: 100px 160px;
   max-width: 1260px;
   margin: 0 auto;
@@ -73,7 +74,7 @@ export const content = css`
     margin-bottom: 60px;
   }
   @media (min-width: 320px) and (max-width: 1000px) {
-    padding: 40px 15px;
+    padding: 20px 15px 60px;
     .tit {
       h1 {
       font-size: 32px;
@@ -94,6 +95,11 @@ export const btnGroup = css`
     &.linebtn {
       border: 1px solid #fff;
       background-color: #1f2437;
+    }
+  }
+  @media (min-width: 320px) and (max-width: 1000px) {
+    > button{
+      font-size: 16px;
     }
   }
 `;

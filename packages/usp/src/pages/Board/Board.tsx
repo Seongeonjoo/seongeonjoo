@@ -39,7 +39,6 @@ export default () => {
   useEffect(syncData, [data]);
 
   const handleChange = (page: number) => {
-    console.log(page);
     setPagination((state) => ({ ...state, page }));
   };
 

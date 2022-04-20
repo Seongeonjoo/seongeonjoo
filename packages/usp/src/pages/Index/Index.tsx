@@ -16,7 +16,7 @@ function Home() {
     <div css={styles.container}>
       <div className='content'>
         <Typography variant="h3" gutterBottom component="div">
-          화면 컴포넌트
+          화면별 랜딩
         </Typography>
         <TableContainer component={Paper}>
           <Table sx={{ width: "100%" }}aria-label="simple table">
@@ -77,7 +77,7 @@ function Home() {
                   <TableCell align="left">가입정보 입력(개인)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0010501</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/consumerform">/</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -93,7 +93,7 @@ function Home() {
                   <TableCell align="left">가입완료</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0011801</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/complete">/</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -101,7 +101,15 @@ function Home() {
                   <TableCell align="left"></TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0020101</TableCell>
-                  <TableCell align="left"><NavLink to="/SignIn">/SignIn</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/signin">/SignIn</NavLink></TableCell>
+                  <TableCell align="left"></TableCell>
+                </TableRow>
+                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">로그아웃</TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left">UI-USP-FRN-0020101</TableCell>
+                  <TableCell align="left"><NavLink to="/signout">/signout</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -167,7 +175,7 @@ function Home() {
                   <TableCell align="left">목록 정시,상시 (탭처리)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0110101</TableCell>
-                  <TableCell align="left"><NavLink to="/a1/Notice">/Notice</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/notice">/Notice</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 {/* 마이페이지 */}
@@ -194,6 +202,14 @@ function Home() {
                   <TableCell align="left"></TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left"><NavLink to="/composampl">/composampl</NavLink></TableCell>
+                  <TableCell align="left"></TableCell>
+                </TableRow>
+                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">컴포넌트 샘플 2</TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"><NavLink to="/snsNaverCallback">/snsNaverCallback</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
             </TableBody>

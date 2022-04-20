@@ -4,7 +4,7 @@ export const container = css`
   z-index: 9999;
   position: absolute;
   width: 100%;
-  padding: 100px;
+  padding: 20px;
   background: #fff;
   a {
     color: #4063EC;
@@ -16,7 +16,7 @@ export const container = css`
     max-width: 1260px;
     width: 100%;
     margin: 0 auto;
-    padding: 80px 0px;
+    padding: 50px 0px;
   }
 `;
 

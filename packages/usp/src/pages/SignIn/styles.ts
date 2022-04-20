@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 export const container = css`
   position: relative;
   background-color: #1f2437;
-  height: 100vh;
+  height: 100%;
 `;
 export const content = css`
   position: relative;
@@ -27,7 +27,7 @@ export const content = css`
     }
   }
   @media (min-width: 320px) and (max-width: 1000px) {
-    padding: 40px 15px;
+    padding: 20px 15px 60px;
     .tit {
       h1 {
       font-size: 32px;

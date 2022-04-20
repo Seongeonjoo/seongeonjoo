@@ -43,7 +43,7 @@ function Consumer() {
           <div className="tit">
             <h1>AICA 회원가입</h1>
           </div>
-          <Stepper activeStep={1} alternativeLabel sx={{ mt : 4 }}>
+          <Stepper activeStep={0} alternativeLabel css={styles.step}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
@@ -105,7 +105,7 @@ function Consumer() {
             </NavLink>
           </Button>
           <Button variant="contained" type="button" >
-            <NavLink to={'/consumer'}>
+            <NavLink to={'/consumerform'}>
               {'사업자 공동 인증'}
             </NavLink>
           </Button>

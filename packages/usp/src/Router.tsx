@@ -24,18 +24,18 @@ function middleware(route: RouteType, type: MiddlewareType[]) {
 //* Route 설정
 export const ServiceRoutes: RouteType[] = [
   {
-    path: 'a1',
+    path: 'notice',
     label: '공고알림',
     children: [
       middleware(
         {
-          path: 'notice',
+          path: 'recruitmentNotice',
           label: '모집공고',
           layout: 'studio',
           element: (
             <Loader
               route={{
-                label: 'home',
+                label: 'notice',
                 layout: 'studio',
                 element: React.lazy(() => import('~/pages/Notice')),
               }}
@@ -45,40 +45,40 @@ export const ServiceRoutes: RouteType[] = [
         ['auth']
       ),
       {
-        path: 'a2',
+        path: 'announcementSelectionRes',
         label: '선정결과공고',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'notice',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/Notice/AnnouncementSelectionRes')),
             }}
           />
         ),
       },
       {
-        path: 'a3',
+        path: 'businessInfoNoti',
         label: '사업정보알림',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'notice',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/Notice/BusinessInfoNoti')),
             }}
           />
         ),
       },
       {
-        path: 'a4',
+        path: 'announcement',
         label: '공지사항',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'notice',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/Notice/Announcement')),
             }}
           />
         ),
@@ -86,57 +86,57 @@ export const ServiceRoutes: RouteType[] = [
     ],
   },
   {
-    path: 'b',
+    path: 'SupportForUse',
     label: '이용지원',
     children: [
       {
-        path: 'b1',
+        path: 'frequentlyAskedQuestions',
         label: '자주묻는질문',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'SupportForUse',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/SupportForUse')),
             }}
           />
         ),
       },
       {
-        path: 'b2',
+        path: 'userManual',
         label: '사용자 메뉴얼',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'SupportForUse',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/SupportForUse/UserManual')),
             }}
           />
         ),
       },
       {
-        path: 'b3',
+        path: 'referenceRoom',
         label: '자료실',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'SupportForUse',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/SupportForUse/ReferenceRoom')),
             }}
           />
         ),
       },
       {
-        path: 'b4',
+        path: 'expertApplication',
         label: '전문가신청',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'SupportForUse',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/SupportForUse/ExpertApplication')),
             }}
           />
         ),
@@ -147,31 +147,31 @@ export const ServiceRoutes: RouteType[] = [
     })) as RouteType[],
   },
   {
-    path: 'c',
+    path: 'Community',
     label: '커뮤니티',
     children: [
       {
-        path: 'c1',
-        label: '사업단소개',
+        path: 'facilityReservation',
+        label: '사업단 소개',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'Community',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/Community')),
             }}
           />
         ),
       },
       {
-        path: 'c3',
+        path: 'introductionBusGroup',
         label: '시설예약',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'Community',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/Community/IntroductionBusGroup')),
             }}
           />
         ),
@@ -179,44 +179,44 @@ export const ServiceRoutes: RouteType[] = [
     ],
   },
   {
-    path: 'd',
+    path: 'EventNews',
     label: '이벤트뉴스',
     children: [
       {
-        path: 'd1',
+        path: 'honsaEvent',
         label: '행사/이벤트',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'EventNews',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/EventNews')),
             }}
           />
         ),
       },
       {
-        path: 'd2',
+        path: 'treadmill',
         label: '디딤널',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'EventNews',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/EventNews/Treadmill')),
             }}
           />
         ),
       },
       {
-        path: 'd3',
+        path: 'resourceInfoSharing',
         label: '자원정보공유',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'EventNews',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/EventNews/ResourceInfoSharing')),
             }}
           />
         ),
@@ -227,18 +227,18 @@ export const ServiceRoutes: RouteType[] = [
     })) as RouteType[],
   },
   {
-    path: 'e',
+    path: 'ServiceIntroduction',
     label: '서비스소개',
     children: [
       {
-        path: 'e1',
+        path: 'serviceInformation',
         label: '서비스안내',
         element: (
           <Loader
             route={{
-              label: 'home',
+              label: 'ServiceIntroduction',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Home')),
+              element: React.lazy(() => import('~/pages/ServiceIntroduction')),
             }}
           />
         ),
@@ -278,6 +278,19 @@ export const UtilityRoutes: RouteType[] = [
     ),
   },
   {
+    path: 'consumerform',
+    label: '가입정보입력 (개인)',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignUp/ConsumerForm')),
+        }}
+      />
+    ),
+  },
+  {
     path: 'confirm',
     label: '보호자인증화면',
     element: (
@@ -292,13 +305,26 @@ export const UtilityRoutes: RouteType[] = [
   },
   {
     path: 'exist',
-    label: '기가입안내(사업자)',
+    label: '기 가입 안내 (사업자)',
     element: (
       <Loader
         route={{
           label: 'home',
           layout: 'studio',
           element: React.lazy(() => import('~/pages/SignUp/Exist')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'complete',
+    label: '가입완료',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignUp/Complete')),
         }}
       />
     ),
@@ -342,12 +368,6 @@ export const UtilityRoutes: RouteType[] = [
       />
     ),
   },
-].map((route: Partial<RouteType>) => ({
-  ...route,
-  layout: 'space',
-})) as RouteType[];
-
-export const SampleRoute: RouteType[] = [
   {
     path: 'composampl',
     label: '컴포넌트 샘플',
@@ -361,6 +381,25 @@ export const SampleRoute: RouteType[] = [
       />
     ),
   },
+  {
+    path: 'snsNaverCallback',
+    label: '컴포넌트 샘플',
+    element: (
+      <Loader
+        route={{
+          label: 'sns-login',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SnsNaverCallback')),
+        }}
+      />
+    ),
+  }
+].map((route: Partial<RouteType>) => ({
+  ...route,
+  layout: 'space',
+})) as RouteType[];
+
+export const SampleRoute: RouteType[] = [
   {
     path: 'board',
     children: [
@@ -425,8 +464,8 @@ export const ReferenceRoutes: RouteType[] = [];
 function Loader({ route }: { route: RouteType }) {
   const View = route.element;
   return (
-    <Suspense fallback={<div>loading</div>}>
-      <Layout name={route.layout!} middleware={route.middleware}>
+    <Suspense fallback={<div>loading.... check your chrome DevTool console</div>}>
+      <Layout name={route.layout!} label={route.label!} middleware={route.middleware}>
         <View />
       </Layout>
     </Suspense>

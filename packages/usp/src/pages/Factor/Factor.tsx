@@ -1,4 +1,4 @@
-import { fetchFactor, fetchMe } from '~/fetches';
+import { fetchFactor} from '~/fetches';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 type FormType = {

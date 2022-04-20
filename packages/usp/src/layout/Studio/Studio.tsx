@@ -9,6 +9,7 @@ type PropsType = {
 };
 
 function Studio({ children }: PropsType) {
+  
   const init = () => {
     document.querySelector('body')!.classList.add('layout--studio');
     return () => {
@@ -19,7 +20,7 @@ function Studio({ children }: PropsType) {
 
   return (
     <Fragment>
-      <Header />
+      <Header/>
       <main>{children}</main>
       <Footer />
       <Portal>

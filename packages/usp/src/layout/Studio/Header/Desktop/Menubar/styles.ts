@@ -10,6 +10,18 @@ export const container = css`
   border-bottom: 1px solid #707070;
   z-index: 999;
 `;
+
+export const containerFactor = css`
+  position: relative;
+  display: flex;
+  padding: 22px 40px;
+  height: 80px;
+  justify-content: space-between;
+  background-color: #160909;
+  border-bottom: 1px solid #707070;
+  z-index: 999;
+`;
+
 export const sidemenu = css`
   display: flex;
   > button {

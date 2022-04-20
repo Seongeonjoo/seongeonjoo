@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+import { useContext } from 'react';
 import Navigation from './Navigation';
 import { NavLink } from 'react-router-dom';
 import * as styles from './styles';
@@ -5,7 +7,7 @@ import { styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
-import InputBase from '@mui/material/InputBase';
+import { ThemeContext } from 'usp/src/layout/index';
 
 const Search = styled('div')(({ theme }) => ({
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -17,8 +19,10 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 function Menubar() {
+  const theme = useContext(ThemeContext);
+
   return (
-    <section css={styles.container}>
+    <section css={(theme.label === "home") ? styles.container : styles.containerFactor}>
       <div css={styles.sidemenu}>
         <IconButton
           size="large"

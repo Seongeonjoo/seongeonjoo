@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
+import React, { useState,useEffect } from 'react';
 import * as styles from './styles';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -7,46 +8,29 @@ import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, useTheme } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-
 import Checkbox from '@mui/material/Checkbox';
-import React, { useState } from 'react';
-
 import MenuItem from '@mui/material/MenuItem';
-
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import SwiperCore, { Navigation,Autoplay,Pagination } from 'swiper';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Chip from '@mui/material/Chip';
-
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
-
 import FormControlLabel from '@mui/material/FormControlLabel';
-
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useEffect } from 'react';
 
 // 데이터작업은 임시입니다.
 
@@ -224,7 +208,6 @@ function Notice() {
     return () => {};
   };
   useEffect(init, []);
-
   return (
     <div css={styles.container}>
       <Box css={styles.sub_cont01}>

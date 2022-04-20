@@ -1,4 +1,4 @@
-import { Fragment, lazy, useEffect } from 'react';
+import React,{ Fragment, lazy, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authentication, { AuthenticationType } from 'shared/authentication';
 import ExtendValidTime from 'shared/components/ExtendValidTime';
@@ -9,6 +9,7 @@ export type LayoutType = 'studio' | 'promotion' | 'space' | 'paper';
 
 type PropsType = {
   name: LayoutType;
+  label: string;
   middleware?: string[];
   children: any;
 };
@@ -16,7 +17,10 @@ type PropsType = {
 const Studio = lazy(() => import('./Studio'));
 const Space = lazy(() => import('./Space'));
 
-function Layout({ name, middleware = [], children }: PropsType) {
+export const ThemeContext = React.createContext({label:""});
+
+function Layout({ name, label, middleware = [], children }: PropsType) {
+  
   const navigate = useNavigate();
   const { data } = useSWR<AuthenticationType>('authentication');
   const type = name.replace(/^\w/, function (a) {
@@ -61,7 +65,9 @@ function Layout({ name, middleware = [], children }: PropsType) {
   const Component: any = { Studio, Space }[type];
   return (
     <Fragment>
-      <Component>{children}</Component>
+      <ThemeContext.Provider value={{label:label}}>
+        <Component>{children}</Component>
+      </ThemeContext.Provider>
       <ExtendValidTime onRefresh={handleRefresh} onExpired={handleExpired} />
     </Fragment>
   );

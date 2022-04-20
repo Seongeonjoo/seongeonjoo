@@ -11,6 +11,19 @@ export const container = css`
   z-index: 999;
   font-size: 14px;
 `;
+
+export const containerFactor = css`
+  position: relative;
+  display: flex;
+  padding: 17px 40px;
+  background-color: #160909;
+  color: #fff;
+  border-bottom: 1px solid #707070;
+  justify-content: space-between;
+  z-index: 999;
+  font-size: 14px;
+`;
+
 export const sideon = css`
   display: flex;
   > p {

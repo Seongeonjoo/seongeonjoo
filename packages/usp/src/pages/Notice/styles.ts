@@ -421,6 +421,11 @@ export const btnGroup = css`
       background-color: #fff;
     }
   }
+  @media (min-width: 320px) and (max-width: 1000px) {
+    > button{
+      font-size: 16px;
+    }
+  }
 `;
 
 export const modalpop = css`

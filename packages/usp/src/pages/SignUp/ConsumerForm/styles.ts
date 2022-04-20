@@ -48,6 +48,7 @@ export const content = css`
       letter-spacing: -0.6px;
     }
   }
+  
   .MuiFormGroup-root{
     display: block;
     position: relative;
@@ -106,27 +107,8 @@ export const content = css`
         margin-bottom: 30px;
       }
     }
-    .MuiFormGroup-root{
-      font-size: 14px;
-      > div{
-        flex: 0 0 50%;
-        padding: 8px 0;
-      }
-      .MuiFormControlLabel-label{
-        font-size: 14px;
-      }
-    }
-    .css-mnkgyh-stylesFactory-singTextbox{
-      margin-bottom: 40px;
-      flex-direction: column;
-      .inputtxt{
-        margin-bottom: 20px;
-        margin-top: 0;
-      }
-    }
   }
 `;
-
 
 export const step = css`
 max-width: 420px;
@@ -196,8 +178,9 @@ export const errbox = css`
 `;
 
 export const singTextbox = css`
+  position: relative;
   display: flex;
-  margin-bottom: 80px;
+  margin-bottom: 16px;
   .inputtxt{
     margin-top: 20px;
     width: 160px;
@@ -221,6 +204,21 @@ export const singTextbox = css`
   .MuiFormLabel-asterisk{
     color: #1CCDCC;
   }
+  button.rbt{
+    position: absolute;
+    top: 7.5px;
+    right: 7.5px;
+    width: 100px;
+    height: 40px;
+    background-color: #4063EC;
+    color: #fff;
+  }
+  span.rbt{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    color: #1CCDCC;
+  }
 `;
 
 export const btnGroup = css`
@@ -233,52 +231,10 @@ export const btnGroup = css`
     font-weight: bold;
     line-height: 1.5; 
     background-color: #4063EC;
-    &.linebtn {
-      border: 1px solid #fff;
-      background-color: #1f2437;
-    }
   }
   @media (min-width: 320px) and (max-width: 1000px) {
     > button{
       font-size: 16px;
-    }
-  }
-`;
-export const modalpop = css`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 780px;
-  background-color: #fff;
-  box-shadow: 24;
-  padding: 40px;
-  border-radius: 20px;
-  h2 {
-    font-size: 20px; 
-    font-weight: bold;
-    > button{
-      color: #707070;
-      position: absolute;
-      right: 20px;
-    }
-  }
-  p{
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 16px;
-    height: 400px;
-    overflow: auto;
-  }
-  @media (min-width: 320px) and (max-width: 1000px) {
-    height: calc(100% - 20px);
-    border-radius: 20px 20px 0 0;
-    transform: translate(-50%, 0);
-    top: auto;
-    bottom: 0;
-    p{
-      height: calc(100% - 150px);
     }
   }
 `;

@@ -1,9 +1,12 @@
-import { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import { useState, useEffect } from 'react';
+import NaverLogin from 'react-naver-login';
+import KakaoLogin from 'react-kakao-login';
+import GoogleLogin from 'react-google-login';
 import { useNavigate, useLocation } from 'react-router-dom';
 import authentication from 'shared/authentication';
 import { fetchSignIn,fetchSignInSns } from '~/fetches';
 import { UserType } from '~/fetches/fetchSignIn';
-import { SnsType } from '~/fetches/fetchSignInSns';
 import * as styles from './styles';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -47,10 +50,9 @@ function SignIn() {
       ...formValues,
       [name]: value
     });
-    console.log(formValues);
   }
 
-  const handleClick = async (event:any) => {
+  const handleClickLogin = async (event:any) => {
     // event.preventDefault();
     // const data:any = new FormData(event.currentTarget);
     if(!validate(event,formValues)){
@@ -73,15 +75,10 @@ function SignIn() {
     }
   };
 
-  // useEffect(() => {
-  //   if (Object.keys(formValues).length === 0 && isSubmitting) {
-  //     submitForm();
-  //   }
-  // }, [formValues]);
+  useEffect(() => {}, []);
 
   // login form validation check
   const validate = (event:any,values:UserType) => {
-    console.log(values)
     // id 확인
     if (!values.loginId) {
       // .. todo
@@ -108,58 +105,48 @@ function SignIn() {
   };
 
   // 카카오 로그인
-  const handleClickKakao = async (event:any) => {
-    // const data:any = new FormData(event.currentTarget);
-    const token = authentication.getToken();
-    const data: SnsType ={
-      accessToken: token,
-      code: "",
-      uri: "sns/kakao"
+  const handleClickKakao = async (res:any) => {
+    const ress:any = await fetchSignInSns({accessToken: res.response.access_token,uri:"sns/kakao",});
+    authentication.set(ress.data);
+    //* Ref 페이지가 있는 경우.
+    const qs = new URLSearchParams(location.search);
+    const next = qs.get('nextUrl');
+    if (next) {
+      window.location.href = window.atob(next);
+    } else {
+      navigate('/');
     }
-    try {
-      const res = await fetchSignInSns(data);
-      authentication.set(res.data);
-  
-      //* Ref 페이지가 있는 경우.
-      const qs = new URLSearchParams(location.search);
-      const next = qs.get('nextUrl');
-      if (next) {
-        window.location.href = window.atob(next);
-      } else {
-        navigate('/');
-      }
-    } catch (e: any) {
-      if (!!e.response && !!e.response.data) alert(e.response?.data.message);
-    }
-  };
-  //  네이버 로그인
-  const handleClickNaver = async (event:any) => {
-    // const data:any = new FormData(event.currentTarget);
   };
   //  구글 로그인
-  const handleClickGoogle = async (event:any) => {
-    // const data:any = new FormData(event.currentTarget);
-    const token = authentication.getToken();
-    const data: SnsType ={
-      accessToken: token,
-      uri: "sns/google"
-    }
-    try {
-      const res = await fetchSignInSns(data);
-      authentication.set(res.data);
-  
-      //* Ref 페이지가 있는 경우.
-      const qs = new URLSearchParams(location.search);
-      const next = qs.get('nextUrl');
-      if (next) {
-        window.location.href = window.atob(next);
-      } else {
-        navigate('/');
-      }
-    } catch (e: any) {
-      if (!!e.response && !!e.response.data) alert(e.response?.data.message);
+  const handleClickGoogle = async (res:any) => {
+    const ress:any = await fetchSignInSns({accessToken: res.accessToken,uri:"sns/google",});
+    console.log();
+    authentication.set(ress.data);
+    //* Ref 페이지가 있는 경우.
+    const qs = new URLSearchParams(location.search);
+    const next = qs.get('nextUrl');
+    if (next) {
+      window.location.href = window.atob(next);
+    } else {
+      navigate('/');
     }
   };
+
+  //  네이버 로그인
+  // const handleClickNaver = async (e:any) => {
+  //   const naver_id_login:any = new window.naver_id_login("0yIGtk_Hx0CJq4f3cxEW", "http://pc.bnet.com:5500/snsNaverCallback");
+  //   console.log(naver_id_login.oauthParams);
+  //   const ress:any = await fetchSignInSns({accessToken: naver_id_login.oauthParams.access_token,uri:"sns/naver",});
+  //   authentication.set(ress.data);
+  //   // * Ref 페이지가 있는 경우.
+  //   const qs = new URLSearchParams(location.search);
+  //   const next = qs.get('nextUrl');
+  //   if (next) {
+  //     window.location.href = window.atob(next);
+  //   } else {
+  //     navigate('/');
+  //   }
+  // };
 
 
   return (
@@ -239,14 +226,38 @@ function SignIn() {
           </NavLink>
         </Box>
         <Stack spacing={2} direction="row" css={styles.signbtn}>
-          <Button fullWidth variant="contained" type="button" onClick={handleClick}>
+          <Button fullWidth variant="contained" type="button" onClick={handleClickLogin}>
             로그인
           </Button>
         </Stack>
         <Stack spacing={4} direction="row" css={styles.snsicon}>
-          <Button className="kakao" variant="text" type="button" onClick={handleClickKakao}></Button>
-          <Button className="naver" variant="text" type="button" onClick={handleClickNaver}></Button>
-          <Button className="google" variant="text" type="button" onClick={handleClickGoogle}></Button>
+          <KakaoLogin
+            token={'d8630bd87de60999c46bded08b4d6bd1'}
+            onSuccess={(res) => {handleClickKakao(res);console.log("KakaoLogin:=> onSuccess :: ", res);}}
+            onFail={(err) => { console.log("KakaoLogin:=> onFail :: ", err);}}
+            onLogout={() => { console.log("로그아웃");}}
+            render={ renderProps => (
+              <Button className="kakao" variant="text" type="button" onClick={renderProps.onClick}></Button>
+            )}
+          />
+          <NaverLogin
+            clientId="0yIGtk_Hx0CJq4f3cxEW"
+            callbackUrl="http://pc.bnet.com:5500/snsNaverCallback"
+            render={ (renderProps:any) => <div onClick={renderProps.onClick}><Button className="naver" variant="text" type="button"></Button></div>}
+            onSuccess={(res:any) => {console.log("NaverLogin:=> onSuccess :: ",res);}}
+            onFailure={(err:any) => console.error("NaverLogin:=> onFailure :: ",err)}
+          />
+          <GoogleLogin
+            clientId="537391280179-01rf954pul1quqn724ccq5ss9b9hva47.apps.googleusercontent.com"
+            render={(renderProps:any) =>(
+                <div onClick={renderProps.onClick}>
+                  <Button className="google" variant="text" type="button"></Button>
+                </div>
+            )} 
+            onSuccess={(res:any) => {console.log("GoogleLogin:=> onSuccess :: ",res);handleClickGoogle(res);}}
+            onFailure={(err:any) => console.error("GoogleLogin:=> onFailure :: ", err)}
+            cookiePolicy={'single_host_origin'}
+          />
         </Stack>
         <div css={styles.error}>
           <p>아이디 혹은 비밀번호를 5회 잘못 입력하였습니다.</p>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { NavLink } from 'react-router-dom';
 import * as styles from './styles';
 import Box from '@mui/material/Box';
@@ -8,10 +9,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
-import Slider from 'swiper';
+// import Slider from 'swiper';
 import Checkbox from '@mui/material/Checkbox';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import fetchDownload from '~/fetches/fetchDownload';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
