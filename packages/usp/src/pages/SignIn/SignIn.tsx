@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState, useEffect } from 'react';
-import NaverLogin from 'react-naver-login';
+// import NaverLogin from 'react-naver-login';
 import KakaoLogin from 'react-kakao-login';
 import GoogleLogin from 'react-google-login';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -240,13 +240,13 @@ function SignIn() {
               <Button className="kakao" variant="text" type="button" onClick={renderProps.onClick}></Button>
             )}
           />
-          <NaverLogin
+          {/* <NaverLogin
             clientId="0yIGtk_Hx0CJq4f3cxEW"
             callbackUrl="http://pc.bnet.com:5500/snsNaverCallback"
             render={ (renderProps:any) => <div onClick={renderProps.onClick}><Button className="naver" variant="text" type="button"></Button></div>}
             onSuccess={(res:any) => {console.log("NaverLogin:=> onSuccess :: ",res);}}
             onFailure={(err:any) => console.error("NaverLogin:=> onFailure :: ",err)}
-          />
+          /> */}
           <GoogleLogin
             clientId="537391280179-01rf954pul1quqn724ccq5ss9b9hva47.apps.googleusercontent.com"
             render={(renderProps:any) =>(
