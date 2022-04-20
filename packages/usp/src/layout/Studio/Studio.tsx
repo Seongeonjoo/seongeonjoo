@@ -21,7 +21,7 @@ function Studio({ children }: PropsType) {
   return (
     <Fragment>
       <Header/>
-      <main sx={{ height:'100vh' }}>{children}</main>
+      <main>{children}</main>
       <Footer />
       <Portal>
         <Top />
