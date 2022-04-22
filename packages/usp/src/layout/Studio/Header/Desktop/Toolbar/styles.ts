@@ -26,6 +26,7 @@ export const containerFactor = css`
 
 export const sideon = css`
   display: flex;
+  flex: 1;
   > p {
     margin-right: 10px;
     em.on{
@@ -40,7 +41,8 @@ export const sideon = css`
 `;
 export const portal = css`
   display: flex;
-  margin-left: -170px;
+  flex: 0 0 60%;
+  justify-content: center;
   > li{
     margin: 0 10px;
   }
@@ -52,6 +54,8 @@ export const portal = css`
 
 export const utility = css`
   display: flex;
+  flex: 1;
+  justify-content: end;
   > li{
     margin: 0 10px;
   }

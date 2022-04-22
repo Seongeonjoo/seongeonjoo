@@ -9,7 +9,7 @@ export type SnsType = {
 export default (data: SnsType) => {
   return axios({
     method: 'post',
-    url: `/member/${data.uri}`,
+    url: `/member/api/login/${data.uri}`,
     data,
   });
 };

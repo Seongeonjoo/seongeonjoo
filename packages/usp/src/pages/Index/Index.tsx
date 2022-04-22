@@ -50,10 +50,18 @@ function Home() {
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell component="th" scope="row">약관동의</TableCell>
+                  <TableCell align="left">개인 (팝업포함)</TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left">UI-USP-FRN-0011501</TableCell>
+                  <TableCell align="left"><NavLink to="/consumer">/Consumer</NavLink></TableCell>
+                  <TableCell align="left"></TableCell>
+                </TableRow>
+                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">약관동의</TableCell>
                   <TableCell align="left">사업자 (팝업포함)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0011501</TableCell>
-                  <TableCell align="left"><NavLink to="/consumer">/SignUp/Consumer</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/producer">/producer</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -61,7 +69,7 @@ function Home() {
                   <TableCell align="left">보호자 휴대폰인증</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0010901</TableCell>
-                  <TableCell align="left"><NavLink to="/confirm">/SignUp/Confirm</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/confirm">/Confirm</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -69,7 +77,7 @@ function Home() {
                   <TableCell align="left">기가입안내(사업자)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0011701</TableCell>
-                  <TableCell align="left"><NavLink to="/exist">/SignUp/Exist</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/exist">/Exist</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -77,7 +85,7 @@ function Home() {
                   <TableCell align="left">가입정보 입력(개인)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0010501</TableCell>
-                  <TableCell align="left"><NavLink to="/consumerform">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/consumerform">/consumerform</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -85,7 +93,7 @@ function Home() {
                   <TableCell align="left">가입정보 입력(사업자)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0010601</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/producerform">/producerform</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -93,7 +101,7 @@ function Home() {
                   <TableCell align="left">가입완료</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0011801</TableCell>
-                  <TableCell align="left"><NavLink to="/complete">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/complete">/complete</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -117,7 +125,7 @@ function Home() {
                   <TableCell align="left">본인확인정보입력</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0030201</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/idtrouver">/idtrouver</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -125,7 +133,7 @@ function Home() {
                   <TableCell align="left">아이디 확인</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0030301</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/IdTrouverFind">/IdTrouverFind</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -133,7 +141,7 @@ function Home() {
                   <TableCell align="left">본인확인정보입력</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0040201</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/factor">/factor</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -141,7 +149,7 @@ function Home() {
                   <TableCell align="left">본인인증</TableCell>
                   <TableCell align="left">휴대폰인증</TableCell>
                   <TableCell align="left">UI-USP-FRN-0040301</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/factorfind">/factorfind</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -149,7 +157,7 @@ function Home() {
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">이메일인증</TableCell>
                   <TableCell align="left">UI-USP-FRN-0040301</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/factorfind">/factorfind</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -157,7 +165,7 @@ function Home() {
                   <TableCell align="left">비밀번호 재설정</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0040401</TableCell>
-                  <TableCell align="left"><NavLink to="/">/</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/factorreset">/factorreset</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 {/* 회원정보 변경 */}
@@ -175,7 +183,7 @@ function Home() {
                   <TableCell align="left">목록 정시,상시 (탭처리)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0110101</TableCell>
-                  <TableCell align="left"><NavLink to="/notice">/Notice</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/recruitmentNotice">/recruitmentNotice</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 {/* 마이페이지 */}

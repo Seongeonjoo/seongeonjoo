@@ -43,6 +43,24 @@ export const signinput = css`
     }
   }
 `
+export const linkbtn = css`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+margin: 23px auto 35px;
+> a {
+  color: #ccc;
+  line-height: 1;
+  border-right:1px solid #707070;
+  padding-right: 20px;
+  margin-left: 17px;
+  font-size: 14px;
+  &:last-child{
+    border-right: none;
+  }
+}
+`
+
 export const signbtn = css`
   height: 60px;
   margin-bottom: 60px;

@@ -7,12 +7,12 @@ import { fetchSignInSns } from '~/fetches';
 function SnsNaverCallback() {
   const location = useLocation();
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     let naver_id_login:any = new window.naver_id_login("0yIGtk_Hx0CJq4f3cxEW", "http://pc.bnet.com:5500/snsNaverCallback");
-  //     handleClickNaver(naver_id_login.oauthParams.access_token);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      let naver_id_login:any = new window.naver_id_login("0yIGtk_Hx0CJq4f3cxEW", "http://pc.bnet.com:5500/snsNaverCallback");
+      handleClickNaver(naver_id_login.oauthParams.access_token);
+    }
+  }, []);
 
   //  네이버 로그인
   const handleClickNaver = async (res:any) => {

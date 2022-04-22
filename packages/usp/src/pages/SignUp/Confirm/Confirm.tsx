@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 
 const steps = [
   '약관동의/인증',
-  '사업자 공동 인증',
+  '휴대폰 본인 인증',
   '가입정보 입력',
   '가입완료',
 ];
@@ -26,7 +26,7 @@ function Confirm() {
           <div className="tit">
             <h1>AICA 회원가입</h1>
           </div>
-          <Stepper activeStep={1} alternativeLabel sx={{ mt : 4 }}>
+          <Stepper css={styles.step} activeStep={1} alternativeLabel sx={{ mt : 4 }}>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
@@ -40,7 +40,11 @@ function Confirm() {
             <p>만 14세 미만은 보호자(법적대리인)의 동의 및 인증 후 가입이 가능합니다.</p>
           </div>
             <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 3 }}>
-              <Button variant="contained" type="button">보호자 휴대폰 인증</Button>
+              <Button variant="contained" type="button">
+                <NavLink to={'/consumerform'}>
+                  {'보호자 휴대폰 인증'}
+                </NavLink>
+              </Button>
             </Stack>
           </Box>
       </div>

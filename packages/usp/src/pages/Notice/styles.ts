@@ -16,7 +16,7 @@ export const container = css`
   .swiper-container{
     padding-bottom: 10px;
   }
-  @media (min-width: 320px) and (max-width: 800px) {
+  @media (min-width: 320px) and (max-width: 820px) {
     .content{
       padding: 60px 15px;
     }
@@ -123,20 +123,15 @@ export const input_w = css`
 export const detal_btn = css`
   max-width: 780px;
   margin: 0 auto;
-  text-align: right;
+  text-align: center;
   button {
     margin-top: 20px;
     background-color: rgba(0 0 0 /0);
     color: #fff;
     border: none;
     font-size: 15px;
-    &:after{
-      content:'';
-      background: url('/images/common/arr_row2.png') no-repeat;
-      width: 12px;
-      height: 8px;
-      margin-left: 10px;
-    } 
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
   }
 `;
 
@@ -145,9 +140,12 @@ export const teble_detal = css`
   max-width: 780px;
   margin: 0 auto;
   margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
 `;
 export const table = css`
 display: flex;
+height: 200px;
   border-radius: 15px;
   .MuiTableHead-root{
     th{
@@ -270,9 +268,11 @@ export const sub_cont02 = css`
 `;
 
 export const sub_list = css`
+.tag{
+  position: absolute;
+  top: 0;
+}
 .css-w4z10b-MuiStack-root{
-    position: absolute;
-    top: 0;
     .MuiChip-root{
       border-radius: 5px;
     }
@@ -375,6 +375,7 @@ export const hotslide = css`
   border-radius: 15px;
   color: #333;
   max-width: 300px;
+  box-shadow: 0px 2px 3px 1px rgb(0, 0, 0, 0.3);
   img{
     height: 200px;
   }
@@ -388,6 +389,15 @@ export const hotslide = css`
     font-weight: 800;
     font-size: 20px;
     letter-spacing: -1.2px; 
+  }
+  .tag{
+    position: absolute;
+    top:0;
+    z-index: 2;
+    justify-content: space-between;
+    width: 100%;
+    .wh{ background-color:#fff; color: #333; border-radius: 0 15px 0 10px;}
+    .blue{ background-color:#4063EC; color: #fff; border-radius: 15px 0 10px 0; }
   }
   @media (min-width: 320px) and (max-width: 820px) {
     .MuiTypography-h5 {

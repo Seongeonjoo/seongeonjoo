@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 function Header() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery('(max-width:850px)');
   const init = () => {
     return () => {};
   };

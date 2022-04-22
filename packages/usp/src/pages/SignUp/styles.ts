@@ -55,6 +55,7 @@ export const contflex = css`
     display: flex;
     padding-left: 0;
     margin-bottom: 20px;
+    flex: 0 0 50%;
     .img {
       img{
         width:100px;
@@ -112,6 +113,7 @@ export const contflex = css`
       flex-direction: column;
     }
     .MuiGrid-item{
+      flex: 0 0 100%;
       .cont {
         > div {
           font-size: 20px;

@@ -17,7 +17,7 @@ left: 0;
     width: 7px;
     height: 14px;
     margin-right: 16.5px;
-    @media (min-width: 320px) and (max-width: 1000px) {
+    @media (min-width: 320px) and (max-width: 820px) {
       display: none;
     }
   }
@@ -49,31 +49,13 @@ export const content = css`
     }
   }
   
-  .MuiStepLabel-label.Mui-active,.MuiStepLabel-label.Mui-completed{
-    color: #1CCDCC;
-    border: none;
-  }
-  .MuiStepIcon-root.Mui-completed,.MuiStepIcon-root.Mui-active{
-    color: #1CCDCC;
-    border: none;
-    .MuiStepIcon-text{
-      font-weight: bold;
-    }
-  }
-  .MuiStepIcon-root{
-    border: 1px solid #fff;
-    border-radius: 20px;
-  }
-  .MuiStepLabel-alternativeLabel{
-    color: #fff;
-  }
   .css-nen11g-MuiStack-root{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 60px;
   }
-  @media (min-width: 320px) and (max-width: 1000px) {
+  @media (min-width: 320px) and (max-width: 820px) {
     padding: 20px 15px 60px;
     .tit {
       h1 {
@@ -82,6 +64,60 @@ export const content = css`
     }
   }
 `;
+
+export const step = css`
+max-width: 420px;
+margin-top: 20px;
+align-items: center;
+.MuiStepLabel-label{
+  letter-spacing: -1.4px;
+}
+.MuiStep-root{
+  padding: 0;
+  width: 110px;
+  .Mui-active{
+    color: #1CCDCC;
+    border: none;
+  }
+  .Mui-completed{
+    color: #707070;
+    border: none;
+    .MuiStepConnector-line{
+      border-color: #000;
+    }
+  }
+  .Mui-disabled{
+    color: #ccc;
+    .MuiStepIcon-root{
+      border: 1px solid #fff;
+      border-radius: 50px;
+    }
+  }
+}
+.MuiStepConnector-root{
+  left: calc(-50% + 11px);
+  right: calc(50% + 11px);
+}
+.MuiStepIcon-root{
+  &.Mui-completed{
+    color: #000;
+  }
+  &.Mui-active{
+    color: #1CCDCC;
+  }
+}
+.MuiStepIcon-text{
+  font-weight: bold;
+  letter-spacing: -2px;
+}
+@media (min-width: 320px) and (max-width: 1000px) {
+  max-width: 100%;
+  .css-nen11g-MuiStack-root{
+    flex-direction: column;
+  }
+}
+`;
+
 export const btnGroup = css`
   justify-content: center;
   > button{
@@ -97,7 +133,7 @@ export const btnGroup = css`
       background-color: #1f2437;
     }
   }
-  @media (min-width: 320px) and (max-width: 1000px) {
+  @media (min-width: 320px) and (max-width: 820px) {
     > button{
       font-size: 16px;
     }

@@ -7,11 +7,11 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { NavLink } from 'react-router-dom';
-// FRN-0011801_회원가입_정보입력 (사업자)
+// FRN-0011801_회원가입_정보입력 (개인)
 
 const steps = [
   '약관동의/인증',
-  '사업자 공동 인증',
+  '휴대폰 본인 인증',
   '가입정보 입력',
   '가입완료',
 ];

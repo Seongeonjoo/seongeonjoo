@@ -14,16 +14,16 @@ import TextField from '@mui/material/TextField';
 import { NavLink } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
-// FRN-0010201_회원가입_약관동의/인증 (개인)
+// FRN-0010201_회원가입_약관동의/인증 (사업자)
 
 const steps = [
   '약관동의/인증',
-  '휴대폰 본인 인증',
+  '사업자 공동 인증',
   '가입정보 입력',
   '가입완료',
 ];
 
-function Consumer() {
+function Producer() {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -53,7 +53,7 @@ function Consumer() {
         </Stack>
         <Box sx={{mb: 7}}>
           <div className="sub_tit">
-            <h2>개인 회원가입</h2>
+            <h2>사업자 회원가입</h2>
             <p>AICA 회원가입을 위해 약관에 동의해주세요.</p>
           </div>
           <FormGroup sx={{ mb: 1 }}>
@@ -83,6 +83,21 @@ function Consumer() {
             </Box>
           </FormGroup>
         </Box>
+        <Box component="form"
+          noValidate
+          autoComplete="off"
+          css={styles.singTextbox}>
+          <div className='inputtxt'>
+            사업자 확인 
+          </div>
+          <TextField
+            required
+            id="id" 
+            label="사업자등록번호" 
+            variant="outlined"
+            fullWidth
+          />
+        </Box>
         <Stack spacing={2} direction="row" css={styles.btnGroup}>
           <Button variant="contained" type="button" className="linebtn">
             <NavLink to={'/signup'}>
@@ -90,8 +105,8 @@ function Consumer() {
             </NavLink>
           </Button>
           <Button variant="contained" type="button" >
-            <NavLink to={'/confirm'}>
-              {'휴대폰 본인인증'}
+            <NavLink to={'/producerform'}>
+              {'사업자 공동 인증'}
             </NavLink>
           </Button>
         </Stack>
@@ -125,4 +140,4 @@ function Consumer() {
   );
 }
 
-export default Consumer;
+export default Producer;

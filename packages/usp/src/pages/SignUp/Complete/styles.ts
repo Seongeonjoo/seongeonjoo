@@ -18,7 +18,7 @@ left: 0;
     height: 14px;
     margin-right: 16.5px;
   }
-  @media (min-width: 320px) and (max-width: 1000px) {
+  @media (min-width: 320px) and (max-width: 820px) {
     display: none;
   }
 `;
@@ -65,7 +65,7 @@ export const content = css`
     justify-content: space-between;
     margin-bottom: 60px;
   }
-  @media (min-width: 320px) and (max-width: 1000px) {
+  @media (min-width: 320px) and (max-width: 820px) {
     padding: 20px 15px 60px;
     .confirm_tit {
       margin: 40px auto 0;
@@ -141,7 +141,7 @@ align-items: center;
   font-weight: bold;
   letter-spacing: -2px;
 }
-@media (min-width: 320px) and (max-width: 1000px) {
+@media (min-width: 320px) and (max-width: 820px) {
   max-width: 100%;
   .css-nen11g-MuiStack-root{
     flex-direction: column;
@@ -172,7 +172,7 @@ export const box_ara = css`
     }
   }
   
-  @media (min-width: 320px) and (max-width: 1000px) {
+  @media (min-width: 320px) and (max-width: 820px) {
     .MuiCardContent-root{
       padding: 30px 30px 30px 67px;
       line-height: 28px;
@@ -206,7 +206,7 @@ export const btnGroup = css`
       background-color: #1f2437;
     }
   }
-  @media (min-width: 320px) and (max-width: 1000px) {
+  @media (min-width: 320px) and (max-width: 820px) {
     > button{
       font-size: 16px;
     }

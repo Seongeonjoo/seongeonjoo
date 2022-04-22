@@ -3,35 +3,28 @@ import { css } from '@emotion/react';
 export const container = css`
   position: relative;
   background-color: #1f2437;
-`;
-
-export const backPass = css`
-position: absolute;
-top: 40px;
-left: 0;
-  &:before{
-    content:'';
-    display: inline-block;
-    background: url('/images/common/pass_left.png');
-    width: 7px;
-    height: 14px;
-    margin-right: 16.5px;
-  }
-  @media (min-width: 320px) and (max-width: 1000px) {
-    display: none;
-  }
+  height: 100%;
 `;
 export const content = css`
   position: relative;
-  color: #fff;
   background-color: #1f2437;
-  padding: 100px 160px;
-  max-width: 1260px;
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+  max-width: 505px;
   margin: 0 auto;
+  height: 100%;
   .tit {
     h1 {
     font-size: 43px;
     letter-spacing: -1.2px;
+    }
+    p{
+      font-size: 14px;
+      color: #8f929b;
+      line-height: 30px;
+      margin-bottom: 40px;
+      letter-spacing: -0.6px;
     }
   }
   .confirm_tit {
@@ -79,34 +72,18 @@ export const content = css`
 `;
 
 export const box_ara = css`
-  dl{
-    display: flex;
-    padding: 15px 80px 10px;
-    line-height: 30px;
-    dt{
-      font-size: 18px;
-      flex: 0 0 50%;
-    }
-    dd{
-      font-size: 24px;
-      font-weight: bold;
-      flex: 0 0 50%;
-    }
+  flex: 1; 
+  margin-top: 40px;
+  margin-bottom: 50px;
+  .MuiCardContent-root{
+    padding: 35px;
+    font-size: 24px;
+    font-weight: bold;
   }
   @media (min-width: 320px) and (max-width: 1000px) {
-    .MuiCardContent-root:last-child{
-      padding-bottom: 10px;
-      padding: 8px;
-    }
-    dl{
-      padding: 15px 30px 10px;
-      line-height: 30px;
-      dt{
-        font-size: 14px;
-      }
-      dd{
-        font-size: 16px;
-      }
+    .MuiCardContent-root{
+      padding: 30px;
+      font-size: 16px;
     }
   }
 `;
@@ -127,8 +104,17 @@ export const btnGroup = css`
     }
   }
   @media (min-width: 320px) and (max-width: 1000px) {
+      position: absolute;
+      width: calc(100% - 30px);
+      bottom: 20px;
     > button{
       font-size: 16px;
     }
   }
 `;
+
+export const error = css`
+  color: #fedc00;
+  line-height: 16px;
+  letter-spacing: -1.2px; 
+`

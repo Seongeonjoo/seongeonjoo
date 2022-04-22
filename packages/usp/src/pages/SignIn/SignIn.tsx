@@ -104,33 +104,6 @@ function SignIn() {
     return true;
   };
 
-  // 카카오 로그인
-  const handleClickKakao = async (res:any) => {
-    const ress:any = await fetchSignInSns({accessToken: res.response.access_token,uri:"sns/kakao",});
-    authentication.set(ress.data);
-    //* Ref 페이지가 있는 경우.
-    const qs = new URLSearchParams(location.search);
-    const next = qs.get('nextUrl');
-    if (next) {
-      window.location.href = window.atob(next);
-    } else {
-      navigate('/');
-    }
-  };
-  //  구글 로그인
-  const handleClickGoogle = async (res:any) => {
-    const ress:any = await fetchSignInSns({accessToken: res.accessToken,uri:"sns/google",});
-    console.log();
-    authentication.set(ress.data);
-    //* Ref 페이지가 있는 경우.
-    const qs = new URLSearchParams(location.search);
-    const next = qs.get('nextUrl');
-    if (next) {
-      window.location.href = window.atob(next);
-    } else {
-      navigate('/');
-    }
-  };
 
   //  네이버 로그인
   // const handleClickNaver = async (e:any) => {
@@ -192,30 +165,8 @@ function SignIn() {
             />
           </div>
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            typography: 'body1',
-            margin: '23px auto 35px',
-            '& > :not(style) + :not(style)': {
-              ml: 2,
-            },
-            '& .MuiLink-root': {
-              color: '#ccc',
-              lineHeight: '1',
-              borderRight:'1px solid #707070',
-              paddingRight: '20px',
-              fontSize: '14px',
-              '&:last-child':{
-                borderRight: 'none',
-              },
-            },
-          }}
-          onClick={preventDefault}
-        >
-          <NavLink to={'/signup'}>
+        <Box css={styles.linkbtn} onClick={preventDefault}>
+          <NavLink to={'/idtrouver'}>
             {'아이디 찾기'}
           </NavLink>
           <NavLink to={'/Factor'}>

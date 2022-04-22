@@ -32,6 +32,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 // 데이터작업은 임시입니다.
 
 interface TabPanelProps {
@@ -244,8 +252,12 @@ function Notice() {
               <Button variant="contained" className="search_btn">검색</Button>
             </Stack>
             {/* 상세조건 테이블 */}
-            {/* 
-            <div css={styles.teble_detal}>
+            {isMobile ? 
+              <div css={styles.detal_btn}>
+                <Button type='button' onClick={openModal}>상세조건 열기</Button>
+              </div>
+            : 
+            <div css={styles.teble_detal} >
               <TableContainer component={Paper} css={styles.table}>
                 <Table aria-label="simple table">
                   <TableHead>
@@ -315,10 +327,7 @@ function Notice() {
                 </Table>
               </TableContainer>
             </div> 
-             */}
-             <div css={styles.detal_btn}>
-              <Button type='button' onClick={isMobile ? openModal : openTable} >상세조건 열기</Button>
-             </div>
+            }
             {/* 모달 팝업부분 */}
             <Modal
               keepMounted
@@ -415,11 +424,15 @@ function Notice() {
                 </div>
               </Stack>
               {/* 슬라이드 */}
-              <Swiper {...swiperParams} style={{ padding: '20px;'}}>
+              <Swiper {...swiperParams} style={{ padding: '10px;'}}>
               {swiperData.map((item) => (
                 <SwiperSlide key={item.img}>
                   <Card css={styles.hotslide}>
                     <CardActionArea>
+                    <Stack direction="row" className='tag' spacing={1} >
+                      <Chip label="사업화" className='blue'/>
+                      <Chip label="마감 D-30" variant="outlined" className='wh' />
+                    </Stack>
                       <CardMedia
                         component="img"
                         height="253"
@@ -450,6 +463,7 @@ function Notice() {
                     일반 공고
                     <span className='data'><em>12</em> 건</span>
                   </Typography>
+                  {isMobile ? '' : 
                   <div className='select'>
                     <TextField
                       id="outlined-select-currency"
@@ -477,6 +491,7 @@ function Notice() {
                       ))}
                     </TextField>
                   </div>
+                  }
                 </Stack>
                 <List>
                 {listData.map((item) => (
@@ -497,7 +512,7 @@ function Notice() {
                             인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재 육성을 인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재  육…<br/>
                           </Typography>
                           {"모집종료 2021-11-21 | 조회"}
-                          <Stack direction="row" spacing={1}>
+                          <Stack direction="row" className='tag' spacing={1} >
                             <Chip label="NEW" className='new'/>
                             <Chip label="사업화" className='blue'/>
                             <Chip label="마감 D-30" variant="outlined" />

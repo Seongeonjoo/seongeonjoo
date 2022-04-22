@@ -266,7 +266,7 @@ export const UtilityRoutes: RouteType[] = [
   },
   {
     path: 'consumer',
-    label: '약관동의(사업자)',
+    label: '약관동의(개인)',
     element: (
       <Loader
         route={{
@@ -279,13 +279,39 @@ export const UtilityRoutes: RouteType[] = [
   },
   {
     path: 'consumerform',
-    label: '가입정보입력 (개인)',
+    label: '회원가입정보입력(개인)',
     element: (
       <Loader
         route={{
           label: 'home',
           layout: 'studio',
           element: React.lazy(() => import('~/pages/SignUp/ConsumerForm')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'producer',
+    label: '약관동의(사업자)',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignUp/Producer')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'producerform',
+    label: '회원가입정보입력(개인)',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignUp/ProducerForm')),
         }}
       />
     ),
@@ -343,6 +369,32 @@ export const UtilityRoutes: RouteType[] = [
     ),
   },
   {
+    path: 'idtrouver',
+    label: '아이디 찾기',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignIn/IdTrouver')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'IdTrouverFind',
+    label: '아이디 확인',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignIn/IdTrouverFind')),
+        }}
+      />
+    ),
+  },
+  {
     path: 'signout',
     label: '로그아웃',
     element: (
@@ -363,7 +415,33 @@ export const UtilityRoutes: RouteType[] = [
         route={{
           label: 'home',
           layout: 'studio',
-          element: React.lazy(() => import('~/pages/Factor')),
+          element: React.lazy(() => import('~/pages/SignIn/Factor')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'factorfind',
+    label: '비밀번호 확인 (본인인증)',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignIn/FactorFind')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'factorreset',
+    label: '비밀번호 확인 (재설정)',
+    element: (
+      <Loader
+        route={{
+          label: 'home',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SignIn/FactorReset')),
         }}
       />
     ),

@@ -110,10 +110,10 @@ function Footer({
   };
   return (
     <Grid container alignItems="center">
-      <Grid item xs>
+      <Grid item={true}>
         {rowCount}
       </Grid>
-      <Grid item xs="auto">
+      <Grid item={true} xs="auto">
         <FormControl variant="standard">
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Page
@@ -127,7 +127,7 @@ function Footer({
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs="auto">
+      <Grid item={true} xs="auto">
         <MUIPagination
           color="primary"
           variant="outlined"

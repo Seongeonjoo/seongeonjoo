@@ -3,10 +3,10 @@ import { css } from '@emotion/react';
 export const container = css`
   width: 100%;
   max-width: 550px;
-  margin-left: -330px;
   font-size: 18px;
   letter-spacing: -0.2px;
   z-index: 999;
+  flex: 0 0 60%;
 `;
 
 export const menu = css`

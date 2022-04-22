@@ -24,6 +24,7 @@ export const containerFactor = css`
 
 export const sidemenu = css`
   display: flex;
+  flex: 1;
   > button {
     margin-right: 20px;
   }
@@ -37,6 +38,7 @@ export const nav = css`
 `;
 
 export const searchbox = css`
+flex: 1;
 `;
 
 export const search = css`
