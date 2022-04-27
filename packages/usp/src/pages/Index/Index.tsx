@@ -220,6 +220,14 @@ function Home() {
                   <TableCell align="left"><NavLink to="/snsNaverCallback">/snsNaverCallback</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
+                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">디자인 XD 공유링크</TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"><NavLink to="https://xd.adobe.com/view/258e0da7-07e9-4059-8bf9-eac4467351df-70dd/">https://xd.adobe.com/view/258e0da7-07e9-4059-8bf9-eac4467351df-70dd/</NavLink></TableCell>
+                  <TableCell align="left"></TableCell>
+                </TableRow>
             </TableBody>
           </Table>
         </TableContainer>

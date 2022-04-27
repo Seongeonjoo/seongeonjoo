@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useState, useEffect } from 'react';
-// import NaverLogin from 'react-naver-login';
-// import KakaoLogin from 'react-kakao-login';
-// import GoogleLogin from 'react-google-login';
+import NaverLogin from 'react-naver-login';
+import KakaoLogin from 'react-kakao-login';
+import GoogleLogin from 'react-google-login';
 import { useNavigate, useLocation } from 'react-router-dom';
 import authentication from 'shared/authentication';
 import { fetchSignIn,fetchSignInSns } from '~/fetches';
@@ -104,6 +104,33 @@ function SignIn() {
     return true;
   };
 
+  // 카카오 로그인
+  const handleClickKakao = async (res:any) => {
+    const ress:any = await fetchSignInSns({accessToken: res.response.access_token,uri:"sns/kakao",});
+    authentication.set(ress.data);
+    //* Ref 페이지가 있는 경우.
+    const qs = new URLSearchParams(location.search);
+    const next = qs.get('nextUrl');
+    if (next) {
+      window.location.href = window.atob(next);
+    } else {
+      navigate('/');
+    }
+  };
+  //  구글 로그인
+  const handleClickGoogle = async (res:any) => {
+    const ress:any = await fetchSignInSns({accessToken: res.accessToken,uri:"sns/google",});
+    console.log();
+    authentication.set(ress.data);
+    //* Ref 페이지가 있는 경우.
+    const qs = new URLSearchParams(location.search);
+    const next = qs.get('nextUrl');
+    if (next) {
+      window.location.href = window.atob(next);
+    } else {
+      navigate('/');
+    }
+  };
 
   //  네이버 로그인
   // const handleClickNaver = async (e:any) => {
@@ -181,7 +208,7 @@ function SignIn() {
             로그인
           </Button>
         </Stack>
-        {/* <Stack spacing={4} direction="row" css={styles.snsicon}>
+        <Stack spacing={4} direction="row" css={styles.snsicon}>
           <KakaoLogin
             token={'d8630bd87de60999c46bded08b4d6bd1'}
             onSuccess={(res) => {handleClickKakao(res);console.log("KakaoLogin:=> onSuccess :: ", res);}}
@@ -209,7 +236,7 @@ function SignIn() {
             onFailure={(err:any) => console.error("GoogleLogin:=> onFailure :: ", err)}
             cookiePolicy={'single_host_origin'}
           />
-        </Stack> */}
+        </Stack>
         <div css={styles.error}>
           <p>아이디 혹은 비밀번호를 5회 잘못 입력하였습니다.</p>
           <p>비밀번호 재 설정을 통해 비밀번호를 변경하신 후 이용가능합니다.</p>

@@ -12,6 +12,7 @@ export const container = css`
 export const menu = css`
   display: flex;
   li {
+    position: relative;
     line-height: 2;
     flex: 1;
     text-align: center;
@@ -21,19 +22,23 @@ export const menu = css`
       background-color: rgba(0,0,0,0);
       border: 0;
     }
-    &.active, &:hover{
+    &.active{
       > ul {
         display: flex;
+        flex-direction: column;
         position: absolute;
-        bottom: -40px;
-        left: 0;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
         background-color: #fff;
-        height: 40px;
+        height: auto;
         justify-content: center;
-        width: 100%;
+        width: 125px;
+        border-radius: 15px;
+        padding: 5px 0;
         > li {
           line-height: 1.6;
-          margin: 5px 20px;
+          margin: 5px;
           flex: initial;
           a.active {
             border-bottom: 2px solid #fff;
