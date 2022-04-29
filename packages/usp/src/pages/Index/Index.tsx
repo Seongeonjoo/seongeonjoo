@@ -183,7 +183,16 @@ function Home() {
                   <TableCell align="left">목록 정시,상시 (탭처리)</TableCell>
                   <TableCell align="left"></TableCell>
                   <TableCell align="left">UI-USP-FRN-0110101</TableCell>
-                  <TableCell align="left"><NavLink to="/recruitmentNotice">/recruitmentNotice</NavLink></TableCell>
+                  <TableCell align="left"><NavLink to="/Notice/RecruitmentNotice">/recruitmentNotice</NavLink></TableCell>
+                  <TableCell align="left"></TableCell>
+                </TableRow>
+                {/* 서브메인: 선정결과공고 */}
+                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">선정결과공고</TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left">UI-USP-FRN-0110101</TableCell>
+                  <TableCell align="left"><NavLink to="/Notice/AnnouncementSelectionRes">/AnnouncementSelectionRes</NavLink></TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
                 {/* 마이페이지 */}

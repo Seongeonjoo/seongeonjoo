@@ -2,6 +2,9 @@ import { css } from '@emotion/react';
 
 export const container = css`
   letter-spacing: -0.04em;
+  .full-page-controls{
+    display: none;
+  }
   .blue{
     color: #4063EC;
   }
@@ -341,11 +344,18 @@ export const radioBox = css`
 dl{
   display: flex;
   padding-bottom: 70px;
-  &:first-child::after{
+  position: relative;
+  &.arrow{
+    &:after{
       content: '';
-      width: 113px;
-      height: 91px;
-      background: url('/images/main/main_titleicon02.png') no-repeat;
+      position: absolute;
+      width: 40px;
+      height: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      background: url(/images/common/row.png) bottom no-repeat;
+    }
   }
   dt {
     span {
@@ -360,6 +370,9 @@ dl{
   }
   dd{
     max-width: 480px;
+    .MuiFormControlLabel-root{
+      padding: 10px 0;
+    }
     &.center{
       .MuiFormControlLabel-label{
         padding: 25px 0;
@@ -428,6 +441,7 @@ dl{
 
 export const maincont04 = css`
   position: relative;
+  overflow: hidden;
   display: flex;
   height: 100vh;
   background-color: #4063EC;
@@ -617,7 +631,7 @@ export const back_slide = css`
       height: 100%;
       width: 100%;
       text-align: center;
-      .swiper-container-cube .swiper-slide{
+      .swiper-slide{
         overflow: hidden;
       }
     }

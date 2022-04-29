@@ -1,18 +1,22 @@
-import { Fragment,useContext } from 'react';
+import { Fragment, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthenticationType } from 'shared/authentication';
 import useSWR from 'swr';
-import * as styles from './styles';
 import { ThemeContext } from 'usp/src/layout/index';
+import * as styles from './styles';
 
 function Toolbar() {
   const { data } = useSWR<AuthenticationType>('authentication');
   const theme = useContext(ThemeContext);
   return (
-    <section css={(theme.label === "home") ? styles.container : styles.containerFactor}>
+    <section
+      css={theme.label === 'home' ? styles.container : styles.containerFactor}
+    >
       <div css={styles.sideon}>
         <p css={{ margin: 0 }}>오늘접속자수 1,000명 </p>
-        <p css={{ margin: 0 }}>/ 네트워크상태 <em className="on"></em></p>
+        <p css={{ margin: 0 }}>
+          / 네트워크상태 <em className="on"></em>
+        </p>
       </div>
       <ul css={styles.portal}>
         <li>
@@ -25,7 +29,7 @@ function Toolbar() {
           <NavLink to="#">데이터센터</NavLink>
         </li>
         <li>
-          <NavLink to="#">사업관리</NavLink>
+          <NavLink to="/biz/BusinessAppMgt">사업관리</NavLink>
         </li>
         <li>
           <NavLink to="#">AI교육</NavLink>

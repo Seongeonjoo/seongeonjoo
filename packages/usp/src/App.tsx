@@ -1,14 +1,16 @@
 import { ThemeProvider } from '@mui/material';
-
+import { BrowserRouter } from 'react-router-dom';
 import ErrorBoundary from 'shared/ErrorBoundary';
 import theme from 'shared/theme';
+import DynamicRouter from './DynamicRouter';
 
-import Router from './Router';
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider theme={theme}>
-        <Router />
+        <BrowserRouter>
+          <DynamicRouter />
+        </BrowserRouter>
       </ThemeProvider>
     </ErrorBoundary>
   );

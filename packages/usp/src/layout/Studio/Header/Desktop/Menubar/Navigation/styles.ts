@@ -36,6 +36,7 @@ export const menu = css`
         width: 125px;
         border-radius: 15px;
         padding: 5px 0;
+        box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%);
         > li {
           line-height: 1.6;
           margin: 5px;

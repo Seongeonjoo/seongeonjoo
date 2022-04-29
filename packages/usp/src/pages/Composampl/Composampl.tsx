@@ -49,8 +49,7 @@ function Composampl() {
 
   /* Breadcrumb 부분 */
   const breadcrumbs = [
-    <Link underline="hover" key="1" color="inherit" href="/" >
-      홈
+    <Link underline="hover" className="home" key="1" color="inherit" href="/" >
     </Link>,
     <Link
       underline="hover"

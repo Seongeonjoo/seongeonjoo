@@ -5,3 +5,5 @@ export { default as fetchRefreshToken } from './fetchRefreshToken';
 export { default as fetchFactor } from './fetchFactor';
 export { default as fetchBoard } from './fetchBoard';
 export { default as fetchMe } from './fetchMe';
+export { default as fetchNotice } from './fetchNotice';
+export { default as fetchNoticeCloseing } from './fetchNoticeCloseing';

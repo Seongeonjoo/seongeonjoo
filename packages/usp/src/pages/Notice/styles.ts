@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 export const container = css`
-  margin-top: 131px;
+  margin-top: 135px;
+  padding-bottom: 120px;
   .blue{
     color: #4063EC;
   }
@@ -8,7 +9,6 @@ export const container = css`
     max-width: 1260px;
     width: 100%;
     margin: 0 auto;
-    padding: 60px 0px;
   }
   .swiper-container-pointer-events{
     padding: 10px;
@@ -17,10 +17,8 @@ export const container = css`
     padding-bottom: 10px;
   }
   @media (min-width: 320px) and (max-width: 820px) {
-    .content{
-      padding: 60px 15px;
-    }
     margin-top: 60px;
+    padding-bottom: 60px;
   }
 `;
 export const sub_cont01 = css`
@@ -180,17 +178,26 @@ height: 200px;
 `;
 
 export const bread = css`
-  padding-top: 50px;
+  position: relative;
   max-width: 1260px;
   margin: 0 auto;
+  .css-1wuw8dw-MuiBreadcrumbs-separator{
+    color: #707070;
+  }
   ol {
+    position: absolute;
+    top: 30px;
+    right: 0;
     justify-content: flex-end;
+  }
+  .home{
+    display: block;
+    width: 15px;
+    height: 15px;
+    background: url('/images/common/home.png') no-repeat;
   }
   @media (min-width: 320px) and (max-width: 820px) {
     display: none;
-  }
-  .css-1wuw8dw-MuiBreadcrumbs-separator{
-    color: #fff;
   }
 `;
 
@@ -233,8 +240,15 @@ export const sub_cont02 = css`
   background-color: #fff;
   color: #333;
   .MuiTypography-h5 {
-    font-size: 24px; 
-    font-weight: 800;
+    height: 36px;
+    font-family: NotoSansCJKKR;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: -0.96px;
+    margin-bottom: 20px;
   }
   .md_btn{
     color: #333;
@@ -245,11 +259,21 @@ export const sub_cont02 = css`
     margin-top: 10px;
   }
   .data{
-    margin-left: 10px;
+    height: 24px;
     font-size: 16px;
+    font-style: normal;
+    line-height: 3;
+    letter-spacing: -4px;
+    margin-left: 10px;
+    display: inline-block;
     > em {
-      font-style: normal;
+      height: 19px;
+      font-family: Roboto;
+      font-size: 16px;
       font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.64px;
       color: #4063EC;
     }
   }
@@ -268,14 +292,14 @@ export const sub_cont02 = css`
 `;
 
 export const sub_list = css`
-.tag{
-  position: absolute;
-  top: 0;
-}
+margin-top: 120px;
 .css-w4z10b-MuiStack-root{
-    .MuiChip-root{
-      border-radius: 5px;
+  .MuiChip-root{
+    border-radius: 5px;
+    .MuiChip-label{
+      padding: 6px 10px;
     }
+  }
     .new{ background-color:#1CCDCC; color: #fff;}
     .blue{ background-color:#4063EC; color: #fff;}
   }
@@ -291,15 +315,41 @@ export const sub_list = css`
   .MuiTypography-body1{
     font-weight: 800;
     font-size: 20px;
-    margin-bottom: 12px;
-    padding-top: 40px;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    color: #333;
   }
   .MuiTypography-body2{
-    font-size: 16px;
+    .body2{
+      font-family: NotoSansCJKKR;
+      line-height: 1.75;
+      letter-spacing: -0.64px;
+      font-size: 16px;
+      color: #707070;
+      margin-bottom: 15px;
+    }
+  }
+  .body3{
+    font-family: NotoSansCJKKR;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.56px;
     color: #707070;
-    > span {
-      display: inline-block;
-      margin-bottom: 25px;
+    height: 12px;
+    > em{
+      font-style: normal;
+      color: #333;
+      font-family: Roboto;
+      &:first-child{
+        margin-right: 3px;
+        padding-right: 8px;
+        border-right: 1px solid #ccc;
+        line-height: 11px;
+        display: inline-block;
+      }
     }
   }
   .bottom_btn{
@@ -322,6 +372,13 @@ export const sub_list = css`
     padding: 10px 0;
   }
   @media (min-width: 320px) and (max-width: 820px) {
+    margin-top: 60px;
+    .MuiChip-root{
+      margin-top: 10px;
+      .MuiChip-label{
+        padding: 6px 10px;
+      }
+    }
     .MuiList-root{
       .MuiListItem-root{
         margin-bottom: 40px;
@@ -342,7 +399,7 @@ export const sub_list = css`
     .MuiTypography-body1{
       font-size: 18px;
       margin-bottom: 12px;
-      padding-top: 50px;
+      padding-top: 20px;
     }
     .MuiTypography-body2{
       font-size: 14px;
@@ -368,19 +425,58 @@ export const sub_list = css`
     margin: 0;
   }
 `;
-
+export const slide_cont02 = css`
+.swiper-button-prev, .swiper-button-next{
+  display: none;
+}
+.swiper-container{
+  padding: 10px 0 50px;
+}
+  .swiper-pagination-bullets{
+    position: absolute;
+    bottom: 0;
+    display: block;
+    z-index: 99;
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    .swiper-pagination-bullet{
+      display: inline-block;
+      width: 60px;
+      height: 2px;
+      background-color: #ccc;
+      margin-right: 10px;
+      opacity: 1;
+      border-radius: 0;
+    }
+    .swiper-pagination-bullet-active{
+      background-color: #1CCDCC;
+    }
+  }
+  .MuiCard-root-hotslide .MuiTypography-root{
+    color: #000;
+  }
+  @media (min-width: 320px) and (max-width: 1000px) {
+    .swiper-pagination-bullets{
+      .swiper-pagination-bullet{
+        width: 40px;
+      }
+    }
+  }
+`;
 export const hotslide = css`
   display: flex;
   background-color: rgba(0,0,0,0);
   border-radius: 15px;
-  color: #333;
-  max-width: 300px;
-  box-shadow: 0px 2px 3px 1px rgb(0, 0, 0, 0.3);
-  img{
-    height: 200px;
+  color: #fff;
+  max-width: 380px;
+  box-shadow: none;
+  // box-shadow: 0px 2px 3px 1px rgb(0, 0, 0, 0.3);
+  .black{
+    color: #222;
   }
   .sub_txt{
-    color: #707070;
+    color: #8F929B;
     line-height:1;
     font-size: 14px;
     margin: 7px 0;
@@ -396,10 +492,17 @@ export const hotslide = css`
     z-index: 2;
     justify-content: space-between;
     width: 100%;
+    border: solid 1px var(--pinkish-grey);
     .wh{ background-color:#fff; color: #333; border-radius: 0 15px 0 10px;}
     .blue{ background-color:#4063EC; color: #fff; border-radius: 15px 0 10px 0; }
   }
-  @media (min-width: 320px) and (max-width: 820px) {
+  .MuiCardActionArea-root{
+    > img{
+      border-radius: 15px;
+      border: solid 1px rgba(204, 204, 204, 0.35);
+    }
+  }
+  @media (min-width: 320px) and (max-width: 1000px) {
     .MuiTypography-h5 {
       font-size: 22px; 
     }
@@ -408,6 +511,11 @@ export const hotslide = css`
     }
     .MuiTypography-root{
       font-size: 16px;
+    }
+    .swiper-pagination-bullets{
+      .swiper-pagination-bullet{
+        width: 40px;
+      }
     }
   }
 `;
