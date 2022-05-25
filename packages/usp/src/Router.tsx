@@ -2,7 +2,8 @@ import React, { Suspense } from 'react';
 import * as DOM from 'react-router-dom';
 import { useRoutes } from 'react-router-dom';
 import NotFound from 'shared/NotFound';
-import Layout, { LayoutType } from '~/layout';
+import Layout from '~/layout';
+import { LayoutType } from '~/models/RouteType';
 
 export type RouteType = {
   label?: string;
@@ -45,6 +46,21 @@ export const ServiceRoutes: RouteType[] = [
         ['auth']
       ),
       {
+        path: 'NoticeDetall',
+        label: '모집공고상세',
+        element: (
+          <Loader
+            route={{
+              label: 'notice',
+              layout: 'studio',
+              element: React.lazy(
+                () => import('~/pages/Notice/View/NoticeDetall')
+              ),
+            }}
+          />
+        ),
+      },
+      {
         path: 'announcementSelectionRes',
         label: '선정결과공고',
         element: (
@@ -52,7 +68,9 @@ export const ServiceRoutes: RouteType[] = [
             route={{
               label: 'notice',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Notice/AnnouncementSelectionRes')),
+              element: React.lazy(
+                () => import('~/pages/Notice/AnnouncementSelectionRes')
+              ),
             }}
           />
         ),
@@ -65,7 +83,9 @@ export const ServiceRoutes: RouteType[] = [
             route={{
               label: 'notice',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Notice/BusinessInfoNoti')),
+              element: React.lazy(
+                () => import('~/pages/Notice/BusinessInfoNoti')
+              ),
             }}
           />
         ),
@@ -110,7 +130,9 @@ export const ServiceRoutes: RouteType[] = [
             route={{
               label: 'SupportForUse',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/SupportForUse/UserManual')),
+              element: React.lazy(
+                () => import('~/pages/SupportForUse/UserManual')
+              ),
             }}
           />
         ),
@@ -123,7 +145,9 @@ export const ServiceRoutes: RouteType[] = [
             route={{
               label: 'SupportForUse',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/SupportForUse/ReferenceRoom')),
+              element: React.lazy(
+                () => import('~/pages/SupportForUse/ReferenceRoom')
+              ),
             }}
           />
         ),
@@ -136,7 +160,9 @@ export const ServiceRoutes: RouteType[] = [
             route={{
               label: 'SupportForUse',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/SupportForUse/ExpertApplication')),
+              element: React.lazy(
+                () => import('~/pages/SupportForUse/ExpertApplication')
+              ),
             }}
           />
         ),
@@ -171,7 +197,9 @@ export const ServiceRoutes: RouteType[] = [
             route={{
               label: 'Community',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/Community/IntroductionBusGroup')),
+              element: React.lazy(
+                () => import('~/pages/Community/IntroductionBusGroup')
+              ),
             }}
           />
         ),
@@ -191,6 +219,19 @@ export const ServiceRoutes: RouteType[] = [
               label: 'EventNews',
               layout: 'studio',
               element: React.lazy(() => import('~/pages/EventNews')),
+            }}
+          />
+        ),
+      },
+      {
+        path: 'honsaEventDetail',
+        label: '행사/이벤트 상세',
+        element: (
+          <Loader
+            route={{
+              label: 'EventNews',
+              layout: 'studio',
+              element: React.lazy(() => import('~/pages/EventNews/View/HonsaEventDetail')),
             }}
           />
         ),
@@ -216,7 +257,9 @@ export const ServiceRoutes: RouteType[] = [
             route={{
               label: 'EventNews',
               layout: 'studio',
-              element: React.lazy(() => import('~/pages/EventNews/ResourceInfoSharing')),
+              element: React.lazy(
+                () => import('~/pages/EventNews/ResInfoSharing')
+              ),
             }}
           />
         ),
@@ -471,7 +514,7 @@ export const UtilityRoutes: RouteType[] = [
         }}
       />
     ),
-  }
+  },
 ].map((route: Partial<RouteType>) => ({
   ...route,
   layout: 'space',
@@ -507,34 +550,21 @@ export const SampleRoute: RouteType[] = [
       },
     ],
   },
-  {
-    path: 'mypage',
-    element: (
-      <Loader
-        route={middleware(
-          {
-            label: 'mypage',
-            layout: 'studio',
-            element: React.lazy(() => import('~/pages/Mypage')),
-          },
-          ['auth', 'factor']
-        )}
-      />
-    ),
-  },
-  {
-    path: 'home',
-    label: '홈',
-    element: (
-      <Loader
-        route={{
-          label: 'home',
-          layout: 'studio',
-          element: React.lazy(() => import('~/pages/Home')),
-        }}
-      />
-    ),
-  },
+  // {
+  //   path: 'mypage',
+  //   element: (
+  //     <Loader
+  //       route={middleware(
+  //         {
+  //           label: 'mypage',
+  //           layout: 'studio',
+  //           element: React.lazy(() => import('~/pages/MyPage')),
+  //         },
+  //         ['auth', 'factor']
+  //       )}
+  //     />
+  //   ),
+  // },
 ];
 
 export const ReferenceRoutes: RouteType[] = [];
@@ -542,8 +572,14 @@ export const ReferenceRoutes: RouteType[] = [];
 function Loader({ route }: { route: RouteType }) {
   const View = route.element;
   return (
-    <Suspense fallback={<div>loading.... check your chrome DevTool console</div>}>
-      <Layout name={route.layout!} label={route.label!} middleware={route.middleware}>
+    <Suspense
+      fallback={<div>loading.... check your chrome DevTool console</div>}
+    >
+      <Layout
+        name={route.layout!}
+        label={route.label!}
+        middleware={route.middleware}
+      >
         <View />
       </Layout>
     </Suspense>
@@ -559,7 +595,7 @@ function Routes() {
           route={{
             label: 'home',
             layout: 'studio',
-            element: React.lazy(() => import('~/pages/Index')),
+            element: React.lazy(() => import('~/pages/Home')),
           }}
         />
       ),

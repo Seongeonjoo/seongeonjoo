@@ -1,154 +1,267 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
+import {TabPanelProps , Noticeitems ,CodeType, groupId,imsiBox} from "./NoticeModel";
 import * as styles from './styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { CardActionArea, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Checkbox from '@mui/material/Checkbox';
-import MenuItem from '@mui/material/MenuItem';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
-import SwiperCore, { Navigation,Autoplay,Pagination } from 'swiper';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Chip from '@mui/material/Chip';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { fetchNotice, fetchNoticeCloseing } from '~/fetches';
-
+import { fetchNotice, fetchNoticeCloseing, fetchGetCommCode } from '~/fetches';
+import BreadCrumb from '~/components/BreadCrumb';
+import { NoticeTabPanel } from './NoticeTabPanel';
+import { NoticeTabPanelontime } from './NoticeTabPanelontime';
+import { CustomRadioButtons} from 'shared/components/ButtonComponents';
+import { CustomCheckBoxs } from '~/components/NoticeCustomCheckBoxs';
 /* 
   작성일    :   2022/04/21
   화면명    :   공고알림 -> 모집공고
   화면/개발 :   Seongeonjoo / navycui
 */
 function Notice() {
+  //#region -------상태 값 초기화
   const theme = useTheme();
-  const [value, setValue] = useState(0);
-  const [listData, setListData] = useState([
-    {
-      img: '/images/main/list_img01.png',
-      title: '2021년도 글로벌 AI 제품·서비스고도화 지원기업 모집공고',
-    },
-    {
-      img: '/images/main/list_img02.png',
-      title: '2021년도 글로벌 AI 제품·서비스고도화 지원기업 모집공고',
-    },
-    {
-      img: '/images/main/list_img03.png',
-      title: '2021년도 글로벌 AI 제품·서비스고도화 지원기업 모집공고',
-    },
-  ]);
-  const [swiperData, setSwiperData] = useState<Noticeitems[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currency, setCurrency] = useState('1');
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  const top100Films = [{ title: '정시모집'},{ title: '상시모집'},{ title: '창업교육' },{ title: '시설/공간/보육'}]
-  const breadcrumbs = [
-    <Link underline="hover" className="home" key="1" color="#fff" href="/" onClick={handleClick}>
-    </Link>,
-    <Link
-      underline="hover"
-      key="2"
-      color="#fff"
-      href="/material-ui/getting-started/installation/"
-      onClick={handleClick}
-    >
-      공고알림
-    </Link>,
-    <Typography key="3" color="#fff">
-      모집공고
-    </Typography>,
-  ];
+  const [assign_box, setAssign_box] = useState<CodeType[]>([]);
+  const searchInput: any = useRef('');
 
+  const [value, setValue] = useState(0);
+  const [pblancSttusCd, setPblancSttusCd] = useState<CodeType[]>([]);
+  const [applyMberTypeCd, setApplyMberTypeCd] = useState<CodeType[]>([]);
+  const [recomendClCd, setRecomendClCd] = useState<CodeType[]>([]);
+
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalItems1, setTotalItems1] = useState(0);
+
+  const [normalData, setNormalData] = useState<Noticeitems[]>([]);
+  const [normalDataOntime, setNormalDataOntime] = useState<Noticeitems[]>([]);
+  const [normalDataSlice, setNormalDataSlice] = useState<Noticeitems[]>([]);
+  const [normalDataSliceOntime, setNormalDataSliceOntime] = useState<Noticeitems[]>([]);
+
+  const [closeingData, setCloseingData] = useState<Noticeitems[]>([]);
+  const [closeingDataOntime, setCloseingDataOntime] = useState<Noticeitems[]>([]);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [sortOrder, setSortOrder] = useState<string>('1');
+  const [PerItemCount, setPerItemCount] = useState<string>('1');
+  const [queryBox, setQueryBox] = useState<string>('');
+
+  const [checked, setChecked] = useState(true);
+
+  const [pblancSttus, setPpblancSttus] = useState<string[]>([]);
+  const [recomendcl, setRecomendcl] = useState<string[]>([]);
+  const [memberType, setMemberType] = useState<string[]>([]);
+
+  // const [pagination, setPagination] = useState({ page: 0, pageSize: 3, rowCount: 0,});
+  //#endregion ---- end
+
+  //#region ------- 함수 영역REACT_APP_TEST
+  // 화면 초기화
   const init = () => {
+    getSearchCategory(); // 검색 구분 조회
+    getCommCode(groupId); // 모집대상,모집상태,사업분야 코드 조회
+
+    getNoticeCloseingList('?ordtmRcrit=false&sortOrder=pblancDay'); // 주요 공고 조회
+    getNoticeList('?ordtmRcrit=false&sortOrder=pblancDay'); // 일반 공고 조회
+  };
+
+  // 정시 주요공고 건색 조건 변경시
+  const currencySelect = () => {
+    handleClickSearch();
+  };
+
+  // 화면 초기 렌드링 실행
+  useEffect(init, []);
+
+  // 조회 조건 변경시
+  useEffect(currencySelect, [sortOrder, PerItemCount]);
+
+  // 공통코드 조회
+  const getCommCode = (groupId: string[]) => {
+    groupId.forEach((element) => {
+      fetchGetCommCode(element)
+        .then((res) => {
+          if (element === 'PBLANC_STTUS') {
+            setPblancSttusCd(res);
+          } else if (element === 'MEMBER_TYPE') {
+            setApplyMberTypeCd(res);
+          } else {
+            setRecomendClCd(res.filter((val: any) => val.codeType === 'BSR'));
+          }
+        })
+        .catch((e) => {
+          console.log('%c getCommCode[공통코드 조회]' + e,);
+        });
+    });
+  };
+
+  // 검색 구분 조회
+  const getSearchCategory = async () => {
+    const box = await Promise.all([ fetchGetCommCode('PBLANC_STTUS'), fetchGetCommCode('MEMBER_TYPE'), fetchGetCommCode('RECOMEND_CL')]);
+    const box3 = box[0].concat(box[1]).concat(box[2].filter((v: any) => v.codeType === 'BSR'));
+    setAssign_box(imsiBox.concat(box3));
+  };
+
+  // 주요 조회
+  const getNoticeCloseingList = (param: string) => {
+    setQueryBox(param.split('?')[1]);
     // 주요공고
-    fetchNotice("?ordtmRcrit=false")
-    .then((res) => {
-      setSwiperData(res.data.list);
-      console.log("fetchNotice:",res.data.list)
-    })
-    .catch((e) => {
-      console.log(e)
-    });
+    fetchNoticeCloseing(param)
+      .then((res) => {
+        if (checked) {
+          console.log('fetchNoticeCloseing:: true', checked);
+          setCloseingDataOntime([]);
+          setCloseingData(res.data);
+          setValue(0);
+        } else {
+          console.log('fetchNoticeCloseing:: false', checked);
+          setCloseingData([]);
+          setCloseingDataOntime(res.data);
+          setValue(1);
+        }
+      })
+      .catch((e) => {
+        console.log('%c erorr' + e);
+      });
+      
+  };
+
+  // 일반 조회
+  const getNoticeList = (param: string) => {
+    setQueryBox(param.split('?')[1]);
     // 일반공고
-    fetchNoticeCloseing("?ordtmRcrit=false")
-    .then((res) => {
-      // setListData(res.data.list);
-      const { data } = res;
-      // setListData();
-      console.log("fetchNoticeCloseing:",data)
-    })
-    .catch((e) => {
-      console.log(e)
-    });
+    fetchNotice(param)
+      .then((res) => {
+        const {
+          data: { list, totalItems },
+        } = res;
+        if (checked) {
+          console.log('fetchNotice:: true', checked);
+          setNormalDataOntime([]);
+          setTotalItems1(0);
+          setNormalDataSlice(list.slice(0, 3));
+          setNormalData(list);
+          setTotalItems(totalItems);
+          setValue(0);
+        } else {
+          console.log('fetchNotice:: false', checked);
+          setNormalData([]);
+          setNormalDataSlice([]);
+          setTotalItems(0);
+          setNormalDataSliceOntime(list.slice(0, 1));
+          setNormalDataOntime(list);
+          setTotalItems1(totalItems);
+          setValue(1);
+        }
+      })
+      .catch((e) => {
+        console.log('erorr:' + e);
+      });
   };
 
-  useEffect(init,[]);
-
-  const openModal = () => {
-    setModalOpen(true);
+  // 검색 버튼
+  const handleClickSearch = (event?: React.SyntheticEvent) => {
+    // 검색구분 선택시
+    if (searchInput.current.value !== '') {
+      assign_box.forEach((element) => {
+        if (element.codeNm === searchInput.current.value) {
+          if (element.codeGroup === 'PBLANC_STTUS') {
+            getNoticeList(`?ordtmRcrit=${checked}&pblancSttus=${element.code}&sortOrder=${sortOrder}`);
+            getNoticeCloseingList(`?ordtmRcrit=${checked}&pblancSttus=${element.code}&sortOrder=${sortOrder}`);
+          } else if (element.codeGroup === 'MEMBER_TYPE') {
+            getNoticeList(`?ordtmRcrit=${checked}&applyMberType=${element.code}&sortOrder=${sortOrder}`);
+            getNoticeCloseingList(`?ordtmRcrit=${checked}&applyMberType=${element.code}&sortOrder=${sortOrder}`);
+          } else if (element.codeGroup === 'RECOMEND_CL') {
+            getNoticeList(`?ordtmRcrit=${checked}&recomendCl=${element.code}&sortOrder=${sortOrder}`);
+            getNoticeCloseingList(`?ordtmRcrit=${checked}&recomendCl=${element.code}&sortOrder=${sortOrder}`);
+          } else {
+            if (searchInput.current.value === '정시모집') {
+              getNoticeList(`?ordtmRcrit=${checked}&sortOrder=${sortOrder}`);
+              getNoticeCloseingList(`?ordtmRcrit=${checked}&sortOrder=${sortOrder}`);
+            } else {
+              getNoticeList(`?ordtmRcrit=${checked}&sortOrder=${sortOrder}`);
+              getNoticeCloseingList(`?ordtmRcrit=${checked}&sortOrder=${sortOrder}`);
+            }
+          }
+        }
+      });
+      return;
+    }
+    // 검색구분 체크시
+    let params = '?ordtmRcrit=' + !checked; // 공고 구분
+    params += '&pblancSttus=' + pblancSttus.toString();  // 모집상태
+    params += '&applyMberType=' + memberType.toString(); // 모집대상
+    params += '&recomendCl=' + recomendcl.toString();    // 사업분야
+  
+    if (sortOrder === '1') {
+      params += '&sortOrder=pblancDay';
+    } else if (sortOrder === '2') {
+      params += '&sortOrder=close';
+    } else {
+      params += '&sortOrder=rdcnt';
+    }
+    if (PerItemCount === '1') {
+      params += '&itemsPerPage=10';
+    } else if (PerItemCount === '2') {
+      params += '&itemsPerPage=20';
+    } else {
+      params += '&itemsPerPage=30';
+    }
+    getNoticeCloseingList(params); // true: 상시 false: 정시
+    getNoticeList(params);
   };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
+  // 탭 변경
   const handleChangeTap = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrency(event.target.value);
+  
+  // 모델창 열기
+  const openModal = () => {
+    setModalOpen(true);
   };
-
+  // 모델창 닫기
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  //#endregion ---- end
   return (
     <div css={styles.container}>
       <Box css={styles.sub_cont01}>
         <div className="benner">
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-            css={styles.bread}
-          >
-            {breadcrumbs}
-          </Breadcrumbs>
+          <BreadCrumb />
           <div className="content">
-            <div className='txtbox'> 
-              <h2 className="tit" style={{ marginTop: 0 }}>모집공고</h2>
-              <p>AICA에서 진행하는 사업 공고를 확인하고 신청할 수 있습니다.<br/> 사업 신청 전에 신청 대상, 사전준비자료, 사업안내서 등을 충분히 숙지하시고 신청을 진행하시기 바랍니다.</p>
+            <div className="txtbox">
+              <h2 className="tit" style={{ marginTop: 0 }}>
+                모집공고
+              </h2>
+              <p>
+                AICA에서 진행하는 사업 공고를 확인하고 신청할 수 있습니다.
+                <br /> 사업 신청 전에 신청 대상, 사전준비자료, 사업안내서 등을
+                충분히 숙지하시고 신청을 진행하시기 바랍니다.
+              </p>
             </div>
             <Stack direction="row" css={styles.input_w}>
               <Autocomplete
                 freeSolo
                 id="free-solo-2-demo"
                 disableClearable
-                options={top100Films.map((option) => option.title)}
+                options={assign_box.map((option) => option.codeNm)}
                 renderInput={(params) => (
                   <TextField
+                    autoFocus
+                    inputRef={searchInput}
                     placeholder="어떤 공고를 찾고계신가요?"
                     {...params}
                     InputProps={{
@@ -158,85 +271,72 @@ function Notice() {
                   />
                 )}
               />
-              <Button variant="contained" className="search_btn">검색</Button>
+              <Button
+                variant="contained"
+                className="search_btn"
+                onClick={handleClickSearch}
+              >
+                검색
+              </Button>
             </Stack>
             {/* 상세조건 pc인 경우 테이블 */}
-            {isMobile ? 
+            {isMobile ? (
               <div css={styles.detal_btn}>
-                <Button type='button' onClick={openModal}>상세조건 열기</Button>
+                <Button type="button" onClick={openModal}>
+                  상세조건 열기
+                </Button>
               </div>
-            : 
-            <div css={styles.teble_detal}>
-                <TableContainer component={Paper} css={styles.table}>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell align="center">공고 구분</TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                            key={row.name}
-                            >
-                            <TableCell component="th" scope="row">
-                                <Checkbox {...label} />{row.name}
-                            </TableCell>
-                            </TableRow>
-                        ))}
-                        </TableBody>
-                    </Table>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell align="center">모집상태</TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                            key={row.name}
-                            >
-                            <TableCell align="left"><Checkbox {...label} />{row.calories}</TableCell>
-                            </TableRow>
-                        ))}
-                        </TableBody>
-                    </Table>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell align="center">모집대상</TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                            key={row.name}
-                            >
-                            <TableCell align="left"><Checkbox {...label} />{row.fat}</TableCell>
-                            </TableRow>
-                        ))}
-                        </TableBody>
-                    </Table>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell align="center">사업분야</TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                            key={row.name}
-                            >
-                            <TableCell align="left"><Checkbox {...label} />{row.carbs}</TableCell>
-                            </TableRow>
-                        ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div> 
-            }
+            ) : (
+              <Box css={styles.teble_detal}>
+                <Box component={Paper} css={styles.table02}>
+                  <dl>
+                    <dt>공고 구분</dt>
+                    <dd>
+                    <CustomRadioButtons
+                      data={['정시모집', '상시모집']}
+                      onClick={(selected) => {
+                        if (selected === '상시모집') {
+                          setChecked(true);
+                        } else {
+                          setChecked(false);
+                        }
+                      }}
+                    />
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>모집상태</dt>
+                    <dd>
+                    <CustomCheckBoxs
+                      row
+                      checkbox={pblancSttusCd}
+                      onClick={(s: string[]) => {setPpblancSttus(s);}}/>
+                    </dd>
+                  </dl>
+                  <dl aria-label="simple table">
+                    <dt>모집대상</dt>
+                    <dd>
+                    <CustomCheckBoxs
+                      row
+                      checkbox={applyMberTypeCd}
+                      onClick={(s: string[]) => {setMemberType(s);}}/>
+                    </dd>
+                  </dl>
+                  <dl aria-label="simple table">
+                    <dt>사업분야</dt>
+                    <dd>
+                    <CustomCheckBoxs
+                      row
+                      checkbox={recomendClCd}
+                      onClick={(s: string[]) => {
+                        setRecomendcl(s);
+                      }}
+                    />
+                    </dd>
+                  </dl>
+                </Box>
+              </Box>
+            )}
             {/* 상세조건 mobile 인경우 모달 팝업 */}
             <Modal
               keepMounted
@@ -248,54 +348,99 @@ function Notice() {
               <Box css={styles.modalpop}>
                 <Typography id="keep-mounted-modal-title" component="h2">
                   사유 확인
-                  <Button type="button" onClick={closeModal}><CloseIcon/></Button>
+                  <Button type="button" onClick={closeModal}>
+                    <CloseIcon />
+                  </Button>
                 </Typography>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     공고 구분
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     모집 상태
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">상시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     모집 대상
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">s</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     사업 분야
                     <FormControlLabel control={<Checkbox />} label="전체" />
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                   </Stack>
                 </Box>
-                <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 6 }}>
-                  <Button variant="contained" fullWidth type="button" className="blue" onClick={closeModal}>저장</Button>
+                <Stack
+                  spacing={2}
+                  direction="row"
+                  css={styles.btnGroup}
+                  sx={{ mt: 6 }}
+                >
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    type="button"
+                    className="blue"
+                    onClick={closeModal}
+                  >
+                    저장
+                  </Button>
                 </Stack>
               </Box>
             </Modal>
@@ -304,184 +449,84 @@ function Notice() {
       </Box>
       {/* 탭 영역 시작*/}
       <Box sx={{ width: '100%' }} css={styles.detal_tab}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChangeTap} aria-label="basic tabs example">
-            <Tab label="정시모집(12)" {...a11yProps(0)}/>
-            <Tab label="상시모집(12)" {...a11yProps(1)} />
+        <Box>
+          <Tabs
+            value={value}
+            onChange={handleChangeTap}
+            aria-label="basic tabs example"
+          >
+            <Tab
+              label={
+                <>
+                  <span>{'정시모집'}</span>
+                  <em>{'(' + ((totalItems ? totalItems : 0) +
+                  (closeingData ? closeingData.length : 0)) + ')'}</em>
+                </>
+              }
+              {...a11yProps(0)}
+            />
+            <Tab
+              label={
+                <>
+                  <span>{'상시모집'}</span>
+                  <em>{'(' + ((totalItems1 ? totalItems1 : 0) +
+                  (closeingDataOntime ? closeingDataOntime.length : 0)) + ')'}</em>
+                </>
+              }
+              {...a11yProps(1)}
+            />
           </Tabs>
         </Box>
+        {/* 정시모집 */}
         <TabPanel value={value} index={0}>
-          <Box css={styles.sub_cont02}>
-            <div className="content">
-              <Stack spacing={6} direction="row" justifyContent="space-between">
-                <Typography variant="h5" component="div">
-                  주요공고
-                  <span className='data'><em>12</em> 건</span>
-                </Typography>
-                <div className='select'>
-                  <TextField
-                    id="outlined-select-currency"
-                    select
-                    value={currency}
-                    onChange={handleChange}
-                  >
-                    {currencies.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </div>
-              </Stack>
-              {/* 슬라이드 */}
-              <Swiper {...swiperParams} style={{ padding: '10px;'}}>
-              {swiperData.map((item) => (
-                <SwiperSlide key={item.rdcnt}>
-                  <Card css={styles.hotslide}>
-                    <CardActionArea>
-                    <Stack direction="row" className='tag' spacing={1} >
-                      <Chip label="사업화" className='blue'/>
-                      <Chip label="마감 D-30" variant="outlined" className='wh' />
-                    </Stack>
-                      <CardMedia
-                        component="img"
-                        height="253"
-                        image={"/images/main/list_img01.png"}
-                        alt="green iguana"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                          {item.pblancNm}
-                        </Typography>
-                        <p className="sub_txt">
-                          접수기간
-                        </p>
-                        <p className="sub_txt">
-                          {item.rceptPd}({item.pblancSttus})
-                        </p>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </SwiperSlide>
-              ))}
-              </Swiper>
-              {/* list 리스트 */}
-              <div css={styles.sub_list}>
-                <Stack spacing={6} direction="row" justifyContent="space-between">
-                  <Typography variant="h5" component="div">
-                    일반 공고
-                    <span className='data'><em>12</em> 건</span>
-                  </Typography>
-                  {isMobile ? '' : 
-                  <div className='select'>
-                    <TextField
-                      id="outlined-select-currency"
-                      select
-                      value={currency}
-                      onChange={handleChange}
-                    >
-                      {currencies.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                    <TextField
-                      id="outlined-select-currency"
-                      select
-                      value={currency}
-                      onChange={handleChange}
-                      sx={{ ml: 1 }}
-                    >
-                      {count.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  </div>
-                  }
-                </Stack>
-                <List>
-                {listData.map((item) => (
-                  <ListItem key={item.img}>
-                    <ListItemAvatar sx={{ mr: 3 }}>
-                      <img src={`${item.img}`} />
-                    </ListItemAvatar>
-                    <ListItemText
-                      secondary={
-                        <React.Fragment>
-                          <Stack direction="row" className='tag' spacing={1} >
-                            <Chip label="NEW" className='new'/>
-                            <Chip label="사업화" className='blue'/>
-                            <Chip label="마감 D-30" variant="outlined" />
-                          </Stack>
-                          <Typography variant="body1">
-                            {item.title}
-                          </Typography>
-                          <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                          >
-                            인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재 육성을 인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재  육…<br/>
-                          </Typography>
-                          {"모집종료 2021-11-21 | 조회"}
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                ))}
-                </List>
-                <Button variant="contained" fullWidth className="bottom_btn">더보기</Button>
-              </div>      
-            </div>
-          </Box>
+          <NoticeTabPanel 
+            normalDataSlice={normalDataSlice}
+            totalItems={totalItems}
+            queryBox={queryBox}
+            normalData={normalData}
+            closeingData={closeingData}
+            handlerShowMores={(key: string) => {
+              const cntbox = normalDataSlice.length;
+              setNormalDataSlice(normalData.slice(0,(cntbox + 1)))
+            }}
+            setSortOrdertab={(opt: string)=>{
+              setSortOrder(opt)
+            }}
+            setPerItemCounttab={(cnt: string)=>{
+              setPerItemCount(cnt)
+            }}
+            />
         </TabPanel>
+        {/* 상시모집 */}
         <TabPanel value={value} index={1}>
-          <Box css={styles.sub_cont02}>
-            <div className="content">
-              <Stack spacing={6} sx={{mb: 2}} direction="row" justifyContent="space-between">
-                <Typography variant="h5" component="div">
-                  상시 모집
-                  <span className='data'><em>12</em> 건</span>
-                </Typography>
-              </Stack>
-            </div>
-          </Box>
+          <NoticeTabPanelontime
+            normalDataSliceOntime={normalDataSliceOntime}
+            totalItems={totalItems1}
+            queryBox={queryBox}
+            normalDataOntime={normalDataOntime}
+            closeingDataOntime={closeingDataOntime}
+            handlerShowMores={(key: string) => {
+              const cntbox = normalDataSliceOntime.length;
+              setNormalDataSliceOntime(normalDataOntime.slice(0,(cntbox + 1)))
+            }}
+            setSortOrdertab={(opt: string)=>{
+              setSortOrder(opt)
+            }}
+            setPerItemCounttab={(cnt: string)=>{
+              setPerItemCount(cnt)
+            }}
+          />
         </TabPanel>
       </Box>
       {/* 탭 영역 종료*/}
-      <Box sx={{m: 50}}></Box>
+      <Box sx={{ m: 50 }}></Box>
     </div>
   );
 }
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-interface Noticeitems {
-  img?:string;
-  isNew: string;
-  pblancDay: string;
-  pblancId: string;
-  pblancNm: string;
-  pblancSttus: string;
-  pblancSumry: string;
-  rceptEndde: string;
-  rceptPd: string;
-  rdcnt: number
-  recomendCl: string;
-  rmndrDay: number
-}
-
-
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-  
+
   return (
     <div
       role="tabpanel"
@@ -492,7 +537,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 2 }}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -505,59 +550,5 @@ function a11yProps(index: number) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
-
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-  event.preventDefault();
-}
-
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('a', 1, 0, 24, 4.0),
-  createData('b', 2, 0, 37, 4.3),
-  createData('c', 3, 0, 24, 6.0),
-  createData('d', 4, 0, 67, 4.3),
-];
-
-  // 선택박스
-  const currencies = [
-    {value: '1',label: '최신순',},
-    {value: '2',label: '인기순',},
-  ];
-  const count = [
-    {value: '1',label: '10개씩',},
-    {value: '2',label: '20개씩',},
-    {value: '3',label: '30개씩',},
-  ];
-
-  // Swiper     //loop : true,
-  SwiperCore.use([Navigation,Autoplay,Pagination]);
-  // const [swiper, setSwiper] = useState(null);
-  const swiperParams = {
-    navigation : true,
-    slidesPerView: 4,
-    spaceBetween: 20,
-    speed: 600, 
-    pagination : true,
-    breakpoints : {// 반응형		
-      1280 : { // 테블릿
-        slidesPerView : 4,
-      },		
-      760 : {  
-        slidesPerView : 2.5,
-      },
-      320 : { 
-        slidesPerView : 1.5,
-      }
-    }
-  }
 
 export default Notice;

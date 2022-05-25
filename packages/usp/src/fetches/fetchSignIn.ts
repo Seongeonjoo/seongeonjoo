@@ -1,8 +1,6 @@
 import axios from 'shared/libs/axios';
-export type UserType = {
-  loginId: string;
-  passwd: string;
-};
+import { UserType } from '~/models/ModelSignin';
+
 export default (data: UserType) => {
   return axios({
     method: 'post',

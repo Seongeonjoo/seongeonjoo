@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import * as styles from './styles';
 import Box from '@mui/material/Box';
 import { Stack } from '@mui/material';
@@ -5,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { RouteType } from '~/DynamicRouter';
+import { RouteType } from '~/models/RouteType';
 
 import useSWR from 'swr';
 

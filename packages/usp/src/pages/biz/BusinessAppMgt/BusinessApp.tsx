@@ -8,7 +8,7 @@ function Announcement() {
   return (
       <Container component="main" maxWidth="xs" css={styles.container}>
         <CssBaseline />
-        <h1>사업신청 : menu-PMS010100</h1>
+        <h1>사업신청</h1>
       </Container>
   );
 }

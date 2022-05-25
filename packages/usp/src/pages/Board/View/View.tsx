@@ -10,7 +10,7 @@ function View() {
   const { id } = params;
 
   const { data } = useSWR(id, fetcher);
-  if (!data) return <div>loading...</div>;
-  return <div>{data.title}</div>;
+  if (!data) return <div>loading...{id}</div>;
+  return <div></div>;
 }
 export default View;

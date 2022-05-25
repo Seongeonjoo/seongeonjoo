@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useContext } from 'react';
-import Navigation from './Navigation';
 import { NavLink } from 'react-router-dom';
 import * as styles from './styles';
 import { styled, alpha } from '@mui/material/styles';

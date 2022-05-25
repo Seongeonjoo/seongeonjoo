@@ -1,26 +1,24 @@
-import * as R from 'ramda';
-import React, { Suspense } from 'react';
-import * as DOM from 'react-router-dom';
-import { useRoutes, useLocation } from 'react-router-dom';
-import NotFound from 'shared/NotFound';
-import Layout, { LayoutType } from '~/layout';
 import api from '~/api';
+import * as R from 'ramda';
 import useSWR, { mutate } from 'swr';
-export type RouteType = {
-  label?: string;
-  layout?: LayoutType;
-  element?: any;
-  path?: string;
-  index?: boolean;
-  middleware?: string[];
-  children?: RouteType[];
-};
+import React, { Suspense } from 'react';
+import { useRoutes, useLocation } from 'react-router-dom';
+import Layout from '~/layout';
+import LinearProgress from '../src/components/Loading/LinearProgress';
+import NotFound from 'shared/NotFound';
+import { MiddlewareType, RouteType } from '~/models/RouteType';
+
+function middleware(route: RouteType, type: MiddlewareType[]) {
+  const middleware = [...(route.middleware || []), ...type];
+  return Object.assign(route, { middleware });
+}
 
 function Loader({ route }: any) {
+  
   const View = route.element;
   return (
     <Suspense
-      fallback={<div>loading.... check your chrome DevTool console</div>}
+      fallback={<><LinearProgress/></>}
     >
       <Layout
         name={route.layout!}
@@ -37,9 +35,7 @@ const flatten = (routes: any) => {
   const res = routes.reduce((a: any, b: any) => {
     const { children = [] } = b;
     const c = R.omit(['children'])(b);
-
     const d = flatten(children);
-
     return [...a, c, ...d];
   }, []);
   return res;
@@ -47,14 +43,14 @@ const flatten = (routes: any) => {
 
 const adaptor = (routes: any) => {
   return routes.map((route: any) => {
-    const { label, path } = route;
+    const { label, path ,layout } = route;
     return {
       label,
       path,
       element: (
         <Loader
           route={{
-            layout: 'studio',
+            layout: layout,
 
             //* path 컴포넌트
             element: React.lazy(() => import(`~/pages${path}`)),
@@ -66,6 +62,37 @@ const adaptor = (routes: any) => {
 };
 
 export let ServiceRoutes = [];
+export const SampleRoute: RouteType[] = [
+  {
+    path: 'board',
+    children: [
+      {
+        index: true,
+        element: (
+          <Loader
+            route={{
+              label: 'board',
+              layout: 'studio',
+              element: React.lazy(() => import('~/pages/Board')),
+            }}
+          />
+        ),
+      },
+      {
+        path: ':id',
+        element: (
+          <Loader
+            route={{
+              label: 'view',
+              layout: 'studio',
+              element: React.lazy(() => import('~/pages/Board/View')),
+            }}
+          />
+        ),
+      },
+    ],
+  },
+];
 export const UtilityRoutes: RouteType[] = [
   {
     path: 'signup',
@@ -263,6 +290,19 @@ export const UtilityRoutes: RouteType[] = [
     ),
   },
   {
+    path: 'NoticeDetall/:id',
+    label: '모집공고 상세',
+      element: (
+        <Loader
+          route={{
+            label: 'view',
+            layout: 'studio',
+            element: React.lazy(() => import('~/pages/Notice/View/NoticeDetall')),
+          }}
+        />
+      ),
+  },
+  {
     path: 'composampl',
     label: '컴포넌트 샘플',
     element: (
@@ -287,7 +327,117 @@ export const UtilityRoutes: RouteType[] = [
         }}
       />
     ),
-  }
+  },
+  {
+    path: 'announcementDetail',
+    label: '공지사항상세페이지',
+    element: (
+      <Loader
+        route={{
+          label: 'notice',
+          layout: 'studio',
+          element: React.lazy(
+            () => import('~/pages/Notice/View/AnnouncementDetail')
+          ),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'announcementSelectionResDetail',
+    label: '선정결과공고상세페이지',
+    element: (
+      <Loader
+        route={{
+          label: 'notice',
+          layout: 'studio',
+          element: React.lazy(
+            () => import('~/pages/Notice/View/AnnouncementSelectionResDetail')
+          ),
+        }}
+      />
+    ),
+  },
+  // {
+  //   path: 'mypage',
+  //   element: (
+  //     <Loader
+  //       route={middleware(
+  //         {
+  //           label: 'mypage',
+  //           layout: 'space',
+  //           element: React.lazy(() => import('~/pages/MyPage')),
+  //         },
+  //         ['auth', 'factor']
+  //       )}
+  //     />
+  //   ),
+  // },
+  {
+    path: 'temp',
+    label: '게시판 temp',
+    element: (
+      <Loader
+        route={{
+          label: 'temp',
+          layout: 'space',
+          element: React.lazy(() => import('~/pages/Temp/Temp')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'referenceRoomDetail',
+    label: '자료실상세페이지',
+    element: (
+      <Loader
+        route={{
+          label: 'SupportForUse',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/SupportForUse/View/ReferenceRoomDetail')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'honsaEventDetail',
+    label: '행사/이벤트 상세',
+    element: (
+      <Loader
+        route={{
+          label: 'EventNews',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/EventNews/View/HonsaEventDetail')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'ResInfoSharingDetail',
+    label: '자원정보공유 상세',
+    element: (
+      <Loader
+        route={{
+          label: 'EventNews',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/EventNews/View/ResInfoSharingDetail')),
+        }}
+      />
+    ),
+  },
+  {
+    path: 'ResourceInfoSharing',
+    label: '자원정보공유 의견작성',
+    element: (
+      <Loader
+        route={{
+          label: 'EventNews',
+          layout: 'studio',
+          element: React.lazy(() => import('~/pages/EventNews/ResourceInfoSharing')),
+        }}
+      />
+    ),
+  },
 ].map((route: Partial<RouteType>) => ({
   ...route,
   layout: 'space',
@@ -310,6 +460,7 @@ function Routes({ routes }: any) {
     },
     ...menus,
     ...UtilityRoutes,
+    ...SampleRoute,
     {
       path: '*',
       element: <NotFound />,
@@ -330,6 +481,8 @@ function hierarchy(list: any) {
   record.forEach((item) => {
     item.path = `${item.url}`.replace(/\/\//g, '/');
     item.label = item.menuNm;
+    (item.menuNm === '셈플페이지') ? item.layout= 'empty': item.layout= 'studio';
+    
     const el =
       R.isNil(item.parentMenuId) || item.parentMenuId === 'ROOT'
         ? root
@@ -360,6 +513,7 @@ function DynamicRouter() {
 
   if (!data) return <div />;
   const routes = hierarchy(data);
+
   mutate('route://service', routes);
 
   return <Routes routes={routes} />;

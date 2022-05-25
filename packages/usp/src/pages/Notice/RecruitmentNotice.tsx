@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as styles from './styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -21,7 +21,7 @@ import Tab from '@mui/material/Tab';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
-import SwiperCore, { Navigation,Autoplay,Pagination } from 'swiper';
+import SwiperCore, { Navigation, Autoplay, Pagination } from 'swiper';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -42,7 +42,7 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-  
+
   return (
     <div
       role="tabpanel"
@@ -74,7 +74,7 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 function Notice() {
   const [value, setValue] = React.useState(0);
   const [tableOpen, setTableOpen] = useState(false);
-  
+
   const openTable = () => {
     setTableOpen(true);
   };
@@ -87,18 +87,23 @@ function Notice() {
   };
 
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  const top100Films = [{ title: '정시모집'},{ title: '상시모집'},{ title: '창업교육' },{ title: '시설/공간/보육'}]
+  const top100Films = [
+    { title: '정시모집' },
+    { title: '상시모집' },
+    { title: '창업교육' },
+    { title: '시설/공간/보육' },
+  ];
 
   function createData(
     name: string,
     calories: number,
     fat: number,
     carbs: number,
-    protein: number,
+    protein: number
   ) {
     return { name, calories, fat, carbs, protein };
   }
-  
+
   const rows = [
     createData('a', 1, 0, 24, 4.0),
     createData('b', 2, 0, 37, 4.3),
@@ -107,8 +112,14 @@ function Notice() {
   ];
 
   const breadcrumbs = [
-    <Link underline="hover" className="home" key="1" color="#fff" href="/" onClick={handleClick}>
-    </Link>,
+    <Link
+      underline="hover"
+      className="home"
+      key="1"
+      color="#fff"
+      href="/"
+      onClick={handleClick}
+    ></Link>,
     <Link
       underline="hover"
       key="2"
@@ -124,13 +135,13 @@ function Notice() {
   ];
   // 선택박스
   const currencies = [
-    {value: '1',label: '최신순',},
-    {value: '2',label: '인기순',},
+    { value: '1', label: '최신순' },
+    { value: '2', label: '인기순' },
   ];
   const count = [
-    {value: '1',label: '10개씩',},
-    {value: '2',label: '20개씩',},
-    {value: '3',label: '30개씩',},
+    { value: '1', label: '10개씩' },
+    { value: '2', label: '20개씩' },
+    { value: '3', label: '30개씩' },
   ];
 
   const listData = [
@@ -170,27 +181,29 @@ function Notice() {
   };
 
   // Swiper
-  SwiperCore.use([Navigation,Autoplay,Pagination]);
+  SwiperCore.use([Navigation, Autoplay, Pagination]);
   // const [swiper, setSwiper] = useState(null);
   const swiperParams = {
-    navigation : true,
+    navigation: true,
     slidesPerView: 4,
     spaceBetween: 20,
-    loop : true,
-    speed: 600, 
-    pagination : true,
-    breakpoints : {// 반응형		
-      1280 : { // 테블릿
-        slidesPerView : 4,
-      },		
-      760 : {  
-        slidesPerView : 2.5,
+    loop: true,
+    speed: 600,
+    pagination: true,
+    breakpoints: {
+      // 반응형
+      1280: {
+        // 테블릿
+        slidesPerView: 4,
       },
-      320 : { 
-        slidesPerView : 1.5,
-      }
-    }
-  }
+      760: {
+        slidesPerView: 2.5,
+      },
+      320: {
+        slidesPerView: 1.5,
+      },
+    },
+  };
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -219,9 +232,13 @@ function Notice() {
             {breadcrumbs}
           </Breadcrumbs>
           <div className="content">
-            <div className='txtbox'> 
-              <h2 className="tit" style={{ marginTop: 0 }}>모집공고</h2>
-              <p>AICA에서 진행하는 사업 공고를 확인하고 신청할 수 있습니다.<br/> 사업 신청 전에 신청 대상, 사전준비자료, 사업안내서 등을 충분히 숙지하시고 신청을 진행하시기 바랍니다.</p>
+            <div className="txtbox">
+              <h2 className="tit">모집공고</h2>
+              <p>
+                AICA에서 진행하는 사업 공고를 확인하고 신청할 수 있습니다.
+                <br /> 사업 신청 전에 신청 대상, 사전준비자료, 사업안내서 등을
+                충분히 숙지하시고 신청을 진행하시기 바랍니다.
+              </p>
             </div>
             <Stack direction="row" css={styles.input_w}>
               <Autocomplete
@@ -240,7 +257,9 @@ function Notice() {
                   />
                 )}
               />
-              <Button variant="contained" className="search_btn">검색</Button>
+              <Button variant="contained" className="search_btn">
+                검색
+              </Button>
             </Stack>
             {/* 상세조건 테이블 */}
             {/* 
@@ -315,9 +334,11 @@ function Notice() {
               </TableContainer>
             </div> 
              */}
-             <div css={styles.detal_btn}>
-              <Button type='button' onClick={isMobile ? openModal : openTable} >상세조건 열기</Button>
-             </div>
+            <div css={styles.detal_btn}>
+              <Button type="button" onClick={isMobile ? openModal : openTable}>
+                상세조건 열기
+              </Button>
+            </div>
             {/* 모달 팝업부분 */}
             <Modal
               keepMounted
@@ -329,54 +350,99 @@ function Notice() {
               <Box css={styles.modalpop}>
                 <Typography id="keep-mounted-modal-title" component="h2">
                   사유 확인
-                  <Button type="button" onClick={closeModal}><CloseIcon/></Button>
+                  <Button type="button" onClick={closeModal}>
+                    <CloseIcon />
+                  </Button>
                 </Typography>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     공고 구분
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     모집 상태
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">상시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     모집 대상
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">s</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Typography id="keep-mounted-modal-title" component="h3">
                     사업 분야
                     <FormControlLabel control={<Checkbox />} label="전체" />
                   </Typography>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                     <Button variant="outlined">상시 모집</Button>
                   </Stack>
-                  <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 2 }}>
+                  <Stack
+                    spacing={2}
+                    direction="row"
+                    css={styles.btnGroup}
+                    sx={{ mt: 2 }}
+                  >
                     <Button variant="outlined">정시 모집</Button>
                   </Stack>
                 </Box>
-                <Stack spacing={2} direction="row" css={styles.btnGroup} sx={{ mt: 6 }}>
-                  <Button variant="contained" fullWidth type="button" className="blue" onClick={closeModal}>저장</Button>
+                <Stack
+                  spacing={2}
+                  direction="row"
+                  css={styles.btnGroup}
+                  sx={{ mt: 6 }}
+                >
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    type="button"
+                    className="blue"
+                    onClick={closeModal}
+                  >
+                    저장
+                  </Button>
                 </Stack>
               </Box>
             </Modal>
@@ -385,8 +451,12 @@ function Notice() {
       </Box>
       <Box sx={{ width: '100%' }} css={styles.detal_tab}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChangeTap} aria-label="basic tabs example">
-            <Tab label="정시모집(12)" {...a11yProps(0)}/>
+          <Tabs
+            value={value}
+            onChange={handleChangeTap}
+            aria-label="basic tabs example"
+          >
+            <Tab label="정시모집(12)" {...a11yProps(0)} />
             <Tab label="상시모집(12)" {...a11yProps(1)} />
           </Tabs>
         </Box>
@@ -396,9 +466,11 @@ function Notice() {
               <Stack spacing={6} direction="row" justifyContent="space-between">
                 <Typography variant="h5" component="div">
                   주요공고
-                  <span className='data'><em>12</em> 건</span>
+                  <span className="data">
+                    <em>12</em> 건
+                  </span>
                 </Typography>
-                <div className='select'>
+                <div className="select">
                   <TextField
                     id="outlined-select-currency"
                     select
@@ -416,119 +488,150 @@ function Notice() {
               {/* 슬라이드 */}
               <Box css={styles.slide_cont02}>
                 <Swiper {...swiperParams}>
-                    {swiperData.map((item) => (
-                      <SwiperSlide key={item.img}>
-                        <Card css={styles.hotslide}>
-                          <CardActionArea>
-                          <Stack direction="row" className='tag' spacing={1} >
-                            <Chip label="사업화" className='blue'/>
-                            <Chip label="마감 D-30" variant="outlined" className='wh' />
-                          </Stack>
-                            <CardMedia
-                              component="img"
-                              height='200'
-                              image={item.img}
-                              alt="green iguana"
+                  {swiperData.map((item) => (
+                    <SwiperSlide key={item.img}>
+                      <Card css={styles.hotslide}>
+                        <CardActionArea>
+                          <Stack direction="row" className="tag" spacing={1}>
+                            <Chip label="사업화" className="blue" />
+                            <Chip
+                              label="마감 D-30"
+                              variant="outlined"
+                              className="wh"
                             />
-                            <CardContent>
-                              <Typography gutterBottom variant="h6" component="div" className="black">
-                                2021년도 글로벌 AI제품&middot;서비스<br/>
-                                고도화 지원기업 모집공고
-                              </Typography>
-                              <p className="sub_txt">
-                                접수기간
-                              </p>
-                              <p className="sub_txt">
-                                2021-11-21~2021-12-11 18:00(모집중)
-                              </p>
-                            </CardContent>
-                          </CardActionArea>
-                        </Card>
-                      </SwiperSlide>
-                    ))}
+                          </Stack>
+                          <CardMedia
+                            component="img"
+                            height="200"
+                            image={item.img}
+                            alt="green iguana"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h6"
+                              component="div"
+                              className="black"
+                            >
+                              2021년도 글로벌 AI제품&middot;서비스
+                              <br />
+                              고도화 지원기업 모집공고
+                            </Typography>
+                            <p className="sub_txt">접수기간</p>
+                            <p className="sub_txt">
+                              2021-11-21~2021-12-11 18:00(모집중)
+                            </p>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </Box>
               {/* list 리스트 */}
               <div css={styles.sub_list}>
-                <Stack spacing={6} direction="row" justifyContent="space-between">
+                <Stack
+                  spacing={6}
+                  direction="row"
+                  justifyContent="space-between"
+                >
                   <Typography variant="h5" component="div">
                     일반 공고
-                    <span className='data'><em>12</em> 건</span>
+                    <span className="data">
+                      <em>12</em> 건
+                    </span>
                   </Typography>
-                  <div className='select'>
-                    <TextField
-                      id="outlined-select-currency"
-                      select
-                      value={currency}
-                      onChange={handleChange}
-                    >
-                      {currencies.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                    <TextField
-                      id="outlined-select-currency"
-                      select
-                      value={currency}
-                      onChange={handleChange}
-                      sx={{ ml: 1 }}
-                    >
-                      {count.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  </div>
+                  {isMobile ? (
+                    ''
+                  ) : (
+                    <div className="select">
+                      <TextField
+                        id="outlined-select-currency"
+                        select
+                        value={currency}
+                        onChange={handleChange}
+                      >
+                        {currencies.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                      <TextField
+                        id="outlined-select-currency"
+                        select
+                        value={currency}
+                        onChange={handleChange}
+                        sx={{ ml: 1 }}
+                      >
+                        {count.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    </div>
+                  )}
                 </Stack>
                 <List>
-                {listData.map((item) => (
-                  <ListItem key={item.img}>
-                    <ListItemAvatar sx={{ mr: 3 }}>
-                      <img src={`${item.img}`} />
-                    </ListItemAvatar>
-                    <ListItemText
-                      secondary={
-                        <React.Fragment>
-                          <Stack direction="row" className='tag' spacing={1} >
-                            <Chip label="NEW" className='new'/>
-                            <Chip label="사업화" className='blue'/>
-                            <Chip label="마감 D-30" variant="outlined" />
-                          </Stack>
-                          <Typography variant="body1">
-                            {item.title}
-                          </Typography>
-                          <Typography
-                            component="div"
-                            variant="body2"
-                            className="body2"
-                            color="text.primary"
-                          >
-                            인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재 육성을 인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재  육…<br/>
-                          </Typography>
-                          <span className="body3">모집종료 <em>2021-11-21</em> 조회 <em>169</em></span>
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                ))}
+                  {listData.map((item) => (
+                    <ListItem key={item.img}>
+                      <ListItemAvatar sx={{ mr: 3 }}>
+                        <img src={`${item.img}`} />
+                      </ListItemAvatar>
+                      <ListItemText
+                        secondary={
+                          <React.Fragment>
+                            <Stack direction="row" className="tag" spacing={1}>
+                              <Chip label="NEW" className="new" />
+                              <Chip label="사업화" className="blue" />
+                              <Chip label="마감 D-30" variant="outlined" />
+                            </Stack>
+                            <Typography variant="body1">
+                              {item.title}
+                            </Typography>
+                            <Typography
+                              component="div"
+                              variant="body2"
+                              className="body2"
+                              color="text.primary"
+                            >
+                              인공지능산업융합사업단에서는 인공지능 중심
+                              산업융합 집적단지 조성사업의 일환으로 AI 직무능력
+                              고도화 및 문제해결 능력을 갖춘 AI 실무인재 육성을
+                              인공지능산업융합사업단에서는 인공지능 중심
+                              산업융합 집적단지 조성사업의 일환으로 AI 직무능력
+                              고도화 및 문제해결 능력을 갖춘 AI 실무인재 육…
+                              <br />
+                            </Typography>
+                            <span className="body3">
+                              모집종료 <em>2021-11-21</em> 조회 <em>169</em>
+                            </span>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  ))}
                 </List>
-                <Button variant="contained" fullWidth className="bottom_btn">더보기</Button>
-              </div>      
+                <Button variant="contained" fullWidth className="bottom_btn">
+                  더보기
+                </Button>
+              </div>
             </div>
           </Box>
         </TabPanel>
+
         <TabPanel value={value} index={1}>
           <Box css={styles.sub_cont02}>
             <div className="content">
               <Stack spacing={6} direction="row" justifyContent="space-between">
                 <Typography variant="h5" component="div">
                   상시 모집
-                  <span className='data'><em>12</em> 건</span>
+                  <span className="data">
+                    <em>12</em> 건
+                  </span>
                 </Typography>
-                <div className='select'>
+                <div className="select">
                   <TextField
                     id="outlined-select-currency"
                     select
@@ -545,46 +648,60 @@ function Notice() {
               </Stack>
               <Box css={styles.slide_cont02}>
                 <Swiper {...swiperParams}>
-                    {swiperData.map((item) => (
-                      <SwiperSlide key={item.img}>
-                        <Card css={styles.hotslide}>
-                          <CardActionArea>
-                          <Stack direction="row" className='tag' spacing={1} >
-                            <Chip label="사업화" className='blue'/>
-                            <Chip label="마감 D-30" variant="outlined" className='wh' />
-                          </Stack>
-                            <CardMedia
-                              component="img"
-                              height='200'
-                              image={item.img}
-                              alt="green iguana"
+                  {swiperData.map((item) => (
+                    <SwiperSlide key={item.img}>
+                      <Card css={styles.hotslide}>
+                        <CardActionArea>
+                          <Stack direction="row" className="tag" spacing={1}>
+                            <Chip label="사업화" className="blue" />
+                            <Chip
+                              label="마감 D-30"
+                              variant="outlined"
+                              className="wh"
                             />
-                            <CardContent>
-                              <Typography gutterBottom variant="h6" component="div" className="black">
-                                2021년도 글로벌 AI제품&middot;서비스<br/>
-                                고도화 지원기업 모집공고
-                              </Typography>
-                              <p className="sub_txt">
-                                접수기간
-                              </p>
-                              <p className="sub_txt">
-                                2021-11-21~2021-12-11 18:00(모집중)
-                              </p>
-                            </CardContent>
-                          </CardActionArea>
-                        </Card>
-                      </SwiperSlide>
-                    ))}
+                          </Stack>
+                          <CardMedia
+                            component="img"
+                            height="200"
+                            image={item.img}
+                            alt="green iguana"
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h6"
+                              component="div"
+                              className="black"
+                            >
+                              2021년도 글로벌 AI제품&middot;서비스
+                              <br />
+                              고도화 지원기업 모집공고
+                            </Typography>
+                            <p className="sub_txt">접수기간</p>
+                            <p className="sub_txt">
+                              2021-11-21~2021-12-11 18:00(모집중)
+                            </p>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </Box>
               {/* list 리스트 */}
               <div css={styles.sub_list}>
-                <Stack spacing={6} direction="row" justifyContent="space-between">
+                <Stack
+                  spacing={6}
+                  direction="row"
+                  justifyContent="space-between"
+                >
                   <Typography variant="h5" component="div">
                     일반 공고
-                    <span className='data'><em>12</em> 건</span>
+                    <span className="data">
+                      <em>12</em> 건
+                    </span>
                   </Typography>
-                  <div className='select'>
+                  <div className="select">
                     <TextField
                       id="outlined-select-currency"
                       select
@@ -613,47 +730,56 @@ function Notice() {
                   </div>
                 </Stack>
                 <List>
-                {listData.map((item) => (
-                  <ListItem key={item.img}>
-                    <ListItemAvatar sx={{ mr: 3 }}>
-                      <img src={`${item.img}`} />
-                    </ListItemAvatar>
-                    <ListItemText
-                      secondary={
-                        <React.Fragment>
-                          <Stack direction="row" className='tag' spacing={1} >
-                            <Chip label="NEW" className='new'/>
-                            <Chip label="사업화" className='blue'/>
-                            <Chip label="마감 D-30" variant="outlined" />
-                          </Stack>
-                          <Typography variant="body1">
-                            {item.title}
-                          </Typography>
-                          <Typography
-                            component="div"
-                            variant="body2"
-                            className="body2"
-                            color="text.primary"
-                          >
-                            인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재 육성을 인공지능산업융합사업단에서는 인공지능 중심 산업융합 집적단지 조성사업의 일환으로 AI 직무능력 고도화 및 문제해결 능력을 갖춘 AI 실무인재  육…<br/>
-                          </Typography>
-                          <span className="body3">모집종료 <em>2021-11-21</em> 조회 <em>169</em></span>
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                ))}
+                  {listData.map((item) => (
+                    <ListItem key={item.img}>
+                      <ListItemAvatar sx={{ mr: 3 }}>
+                        <img src={`${item.img}`} />
+                      </ListItemAvatar>
+                      <ListItemText
+                        secondary={
+                          <React.Fragment>
+                            <Stack direction="row" className="tag" spacing={1}>
+                              <Chip label="NEW" className="new" />
+                              <Chip label="사업화" className="blue" />
+                              <Chip label="마감 D-30" variant="outlined" />
+                            </Stack>
+                            <Typography variant="body1">
+                              {item.title}
+                            </Typography>
+                            <Typography
+                              component="div"
+                              variant="body2"
+                              className="body2"
+                              color="text.primary"
+                            >
+                              인공지능산업융합사업단에서는 인공지능 중심
+                              산업융합 집적단지 조성사업의 일환으로 AI 직무능력
+                              고도화 및 문제해결 능력을 갖춘 AI 실무인재 육성을
+                              인공지능산업융합사업단에서는 인공지능 중심
+                              산업융합 집적단지 조성사업의 일환으로 AI 직무능력
+                              고도화 및 문제해결 능력을 갖춘 AI 실무인재 육…
+                              <br />
+                            </Typography>
+                            <span className="body3">
+                              모집종료 <em>2021-11-21</em> 조회 <em>169</em>
+                            </span>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  ))}
                 </List>
-                <Button variant="contained" fullWidth className="bottom_btn">더보기</Button>
+                <Button variant="contained" fullWidth className="bottom_btn">
+                  더보기
+                </Button>
+              </div>
             </div>
-          </div>
           </Box>
         </TabPanel>
       </Box>
-      <Box sx={{m: 50}}></Box>
+      <Box sx={{ m: 50 }}></Box>
     </div>
   );
 }
 
 export default Notice;
-

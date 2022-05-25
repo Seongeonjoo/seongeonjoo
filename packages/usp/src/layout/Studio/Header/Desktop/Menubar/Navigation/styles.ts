@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export const container = css`
   width: 100%;
-  max-width: 550px;
+  max-width: 670px;
   font-size: 18px;
   letter-spacing: -0.2px;
   z-index: 999;

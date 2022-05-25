@@ -1,4 +1,4 @@
-import {Component, ErrorInfo, ReactNode} from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 import InternalServerError from './InternalServerError';
 interface Props {
   children?: ReactNode;
@@ -23,12 +23,15 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public render() {
+    window.addEventListener('popstate', () => {
+      window.location.reload();
+    });
     if (this.state.hasError) {
       return <InternalServerError />;
     }
 
-    return this.props.children && this.props.children as JSX.Element
-    }
+    return this.props.children && (this.props.children as JSX.Element);
   }
+}
 
 export default ErrorBoundary;

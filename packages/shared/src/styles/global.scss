@@ -7,21 +7,25 @@
     box-sizing: border-box;
   }
 }
-html{
+html {
   width: 100%;
   overflow-x: hidden;
 }
 body,
 #root {
-  width: 100%;
   > main {
-    section{
+    section {
       padding-top: 131px;
     }
   }
 }
-body{
+.mainfull {
+  height: 100vh;
+}
+body {
   padding: 0 !important;
+  //cursor: url('../../../usp/public/images/common/mouse action_defualt.png'),
+  // auto;
 }
 ul,
 ol,
@@ -34,34 +38,94 @@ dl {
 button,
 a {
   cursor: pointer;
+  // cursor: url('../../../usp/public/images/common/mouse action.png'), auto !important;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
 header {
-  position: absolute;
+  position: fixed;
+  z-index: 2;
   width: 100%;
   top: 0;
 }
-.css-1xy4ick-container{
+.css-1xy4ick-container {
   width: 80px;
   height: 80px;
   background-color: #fff;
   box-shadow: 0 1px 4px #707070;
   border: none;
 }
-br.mo{
+.mo {
   display: none;
 }
-br.pc{
+.pc {
   display: block;
 }
-@media (min-width: 320px) and (max-width: 1000px) {
-  br.mo{
-      display: block;
+
+.container {
+  position: relative;
+  background-color: #1f2437;
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 60px 0;
+  .tit {
+    h1 {
+      font-size: 43px;
+      letter-spacing: -1.2px;
+    }
   }
-  br.pc{
-      display: none;
+  .sub_tit {
+    h2 {
+      font-size: 32px;
+      letter-spacing: -1.2px;
+    }
+    p {
+      font-size: 14px;
+      color: #8f929b;
+      line-height: 30px;
+      margin-bottom: 30px;
+      letter-spacing: -0.6px;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 850px) {
+  .mo {
+    display: block;
+  }
+  .pc {
+    display: none;
+  }
+  body,
+  #root {
+    > main {
+      section {
+        padding-top: 60px;
+      }
+    }
+  }
+  .content {
+    padding: 48px 15px;
+    .tit {
+      h1 {
+        font-size: 28px;
+      }
+    }
+    .sub_tit {
+      h2 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 14px;
+        margin-bottom: 30px;
+      }
+    }
   }
 }

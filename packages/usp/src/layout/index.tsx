@@ -5,22 +5,15 @@ import ExtendValidTime from 'shared/components/ExtendValidTime';
 import dayjs from 'shared/libs/dayjs';
 import useSWR from 'swr';
 import { fetchRefreshToken } from '~/fetches';
-export type LayoutType = 'studio' | 'promotion' | 'space' | 'paper';
-
-type PropsType = {
-  name: LayoutType;
-  label: string;
-  middleware?: string[];
-  children: any;
-};
+import {LayoutType, PropsType} from '~/models/RouteType';
 
 const Studio = lazy(() => import('./Studio'));
 const Space = lazy(() => import('./Space'));
+const Empty = lazy(() => import('./Empty'));
 
 export const ThemeContext = React.createContext({label:""});
 
 function Layout({ name, label, middleware = [], children }: PropsType) {
-  
   const navigate = useNavigate();
   const { data } = useSWR<AuthenticationType>('authentication');
   const type = name.replace(/^\w/, function (a) {
@@ -62,7 +55,7 @@ function Layout({ name, label, middleware = [], children }: PropsType) {
     }
   }
 
-  const Component: any = { Studio, Space }[type];
+  const Component: any = { Studio, Space, Empty }[type];
   return (
     <Fragment>
       <ThemeContext.Provider value={{label:label}}>

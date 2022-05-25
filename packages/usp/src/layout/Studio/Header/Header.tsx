@@ -1,11 +1,11 @@
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Desktop from './Desktop';
 import Mobile from './Mobile';
 import { useEffect } from 'react';
 
 function Header() {
-  const theme = useTheme();
+  // const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:1000px)');
   const init = () => {
     return () => {};

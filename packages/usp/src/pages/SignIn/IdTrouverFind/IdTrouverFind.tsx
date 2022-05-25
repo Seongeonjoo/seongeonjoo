@@ -5,8 +5,16 @@ import Stack from '@mui/material/Stack';
 import { NavLink } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-
+import { useLocation  } from 'react-router-dom';
+/*
+  화면: 아이디 찾기 결과페이지
+  작성자: Seongeonjoo / navycui
+  작성일: 20220516
+*/
 function IdTrouverFind() {
+  const location:any = useLocation();
+  const { loginId } = location.state;
+
   return (
     <section css={styles.container}>
       <div css={styles.content}>
@@ -20,7 +28,7 @@ function IdTrouverFind() {
           <Box css={styles.box_ara}>
             <Card sx={{ borderRadius: '10px' }}>
               <CardContent>
-                ab********
+                {loginId}
               </CardContent>
             </Card>
           </Box>
@@ -31,7 +39,7 @@ function IdTrouverFind() {
               </NavLink>
             </Button>
             <Button variant="contained" type="button">
-              <NavLink to={'/singin'}>
+              <NavLink to={'/signin'}>
                 {'로그인하기'}
               </NavLink>
             </Button>

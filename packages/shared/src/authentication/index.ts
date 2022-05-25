@@ -37,6 +37,7 @@ export const set = (value: AuthenticationType) => {
       .valueOf(),
   };
 
+  // console.log(useSWRConfig());
   mutate('authentication', store);
 };
 
@@ -44,8 +45,6 @@ export const remove = () => {
   store = {};
   mutate('authentication', store);
 };
-
-
 
 export default {
   get,

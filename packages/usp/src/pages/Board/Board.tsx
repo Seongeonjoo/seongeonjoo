@@ -8,43 +8,23 @@ import Typography from '@mui/material/Typography';
 import { GridColumns } from '@mui/x-data-grid';
 
 const fetcher = (url: string, params: any = {}) =>
-  api({
-    method: 'get',
-    url,
-    params: { page: params.page + 1, itemsPerPage: params.pageSize },
-  });
+  api({ method: 'get', url, params: { page: params.page + 1, itemsPerPage: params.pageSize }});
 
 export default () => {
-  const [pagination, setPagination] = useState({
-    page: 0,
-    pageSize: 3,
-    rowCount: 0,
-  });
-
   const [list, setList] = useState([]);
+  const [pagination, setPagination] = useState({page: 0, pageSize: 3, rowCount: 0});
 
-  const { data, isValidating } = useSWR(
-    [`/common/api/boards/usp-temp1/articles`, pagination],
-    fetcher
-  );
+  // 게시물 조회
+  const { data, isValidating } = useSWR([`/common/api/boards/usp-notice/articles`, pagination],fetcher);
 
   const syncData = () => {
     if (!!data) {
       setList(() => data.list);
-
       // 게시물 총 갯수
       setPagination((state) => ({ ...state, rowCount: data.totalItems }));
     }
   };
   useEffect(syncData, [data]);
-
-  const handleChange = (page: number) => {
-    setPagination((state) => ({ ...state, page }));
-  };
-
-  const handleSizeChange = (pageSize: number) => {
-    setPagination((state) => ({ ...state, pageSize }));
-  };
 
   //* List 가 없을 때
   if (!list.length) return <div>loading...</div>;
@@ -76,8 +56,12 @@ export default () => {
         loading={isValidating}
         {...pagination}
         {...{ columns, rows }}
-        onPageChange={handleChange}
-        onPageSizeChange={handleSizeChange}
+        onPageChange={(page: number)=>{
+          setPagination((state) => ({ ...state, page }));
+        }}
+        onPageSizeChange={(pageSize: number)=>{
+          setPagination((state) => ({ ...state, pageSize }));
+        }}
       />
     </div>
   );

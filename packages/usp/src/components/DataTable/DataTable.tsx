@@ -6,14 +6,22 @@ import MenuItem from '@mui/material/MenuItem';
 import MUIPagination from '@mui/material/Pagination';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-import { DataGrid, DataGridProps, GridToolbarContainer, GridToolbarColumnsButton, GridToolbarFilterButton, GridToolbarExport, GridToolbarDensitySelector, } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  DataGridProps,
+  GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarExport,
+  GridToolbarDensitySelector,
+} from '@mui/x-data-grid';
 import { useState } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 
 // Toolbar: CustomToolbar ( 그리드 상단에 툴바 기능추가 )
 function CustomToolbar() {
   return (
-    <GridToolbarContainer style={{justifyContent: "end"}}>
+    <GridToolbarContainer style={{ justifyContent: 'end' }}>
       <GridToolbarColumnsButton />
       <GridToolbarFilterButton />
       <GridToolbarDensitySelector />
@@ -110,9 +118,7 @@ function Footer({
   };
   return (
     <Grid container alignItems="center">
-      <Grid item={true}>
-        {rowCount}
-      </Grid>
+      <Grid item={true}>{rowCount}</Grid>
       <Grid item={true} xs="auto">
         <FormControl variant="standard">
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
@@ -132,7 +138,11 @@ function Footer({
           color="primary"
           variant="outlined"
           shape="rounded"
-          count={Math.round(((rowCount % pageSize)>0) ? (rowCount / pageSize) + 1 : rowCount / pageSize)}
+          count={Math.round(
+            rowCount % pageSize > 0
+              ? rowCount / pageSize + 1
+              : rowCount / pageSize
+          )}
           showFirstButton
           showLastButton
           page={page + 1}
@@ -152,7 +162,9 @@ function DataTable({ ...args }: DataGridProps) {
       {...options}
       pagination
       paginationMode="server"
-      components={{ Footer ,...{LoadingOverlay: LinearProgress, Toolbar: CustomToolbar,NoRowsOverlay: CustomNoRowsOverlay,},}}
+      components={{ 
+        Footer, 
+        ...{ LoadingOverlay: LinearProgress, Toolbar: CustomToolbar, NoRowsOverlay: CustomNoRowsOverlay}}}
       componentsProps={{ footer: options }}
     />
   );

@@ -42,7 +42,7 @@ function Toolbar() {
               <NavLink to={'/signout'}>로그아웃</NavLink>
             </li>
             <li>
-              <NavLink to={'/mypage'}>마이페이지</NavLink>
+              <NavLink to={'/MyPage'}>마이페이지</NavLink>
             </li>
           </Fragment>
         ) : (

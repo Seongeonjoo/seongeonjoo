@@ -1,15 +1,19 @@
+/* eslint-disable jsx-a11y/alt-text */
 import * as styles from './styles';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { NavLink } from 'react-router-dom';
-//FRN-0010101_회원가입_회원유형 선택
 
+/* 
+  작성일    :   2022/05/23
+  화면명    :   회원가입_회원유형 선택
+  회면ID    :   UI-USP-FRN-0010101
+  화면/개발 :   Seongeonjoo / navycui
+*/
 function SignUp() {
   return (
     <section css={styles.container}>
@@ -68,26 +72,26 @@ function SignUp() {
                 <h3>개인</h3>
                 <p>일반 사용자 및 예비 창업자, 학생, 강사</p>
               </CardContent>
-                <Stack spacing={2} direction="row" css={styles.signbtn}>
-                  <Button variant="contained" type="button">
-                    <NavLink to={'/consumer'}>
-                      {'가입하기'}
-                    </NavLink>
-                  </Button>
-                </Stack>
+                <NavLink to={'/consumer'}>
+                  <Stack spacing={2} direction="row" css={styles.signbtn}>
+                    <Button variant="contained" type="button">
+                        {'가입하기'}
+                    </Button>
+                  </Stack>
+                </NavLink>
             </Card>
             <Card sx={{ borderRadius: '0 0 20px 20px' }}>
               <CardContent>
                 <h3>사업자</h3>
                 <p>개인 및 법인 사업자, 대학</p>
               </CardContent>
-                <Stack spacing={2} direction="row" css={styles.signbtn}>
-                <Button variant="contained" type="button">
-                    <NavLink to={'/producer'}>
-                      {'가입하기'}
-                    </NavLink>
-                  </Button>
-                </Stack>
+                <NavLink to={'/producer'}>
+                  <Stack spacing={2} direction="row" css={styles.signbtn}>
+                  <Button variant="contained" type="button">
+                        {'가입하기'}
+                    </Button>
+                  </Stack>
+                </NavLink>
             </Card>
           </Box>
         </div>

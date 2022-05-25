@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { fetchSignInSns } from '~/fetches';
+// import { fetchSignInSns } from '~/fetches';
 // import authentication from 'shared/authentication';
 
 function SnsNaverCallback() {
@@ -17,7 +17,7 @@ function SnsNaverCallback() {
   //  네이버 로그인
   const handleClickNaver = async (res:any) => {
     console.log(res);
-    const ress:any = await fetchSignInSns({accessToken: res,uri:"sns/naver",});
+    // const ress:any = await fetchSignInSns({accessToken: res,uri:"sns/naver",});
     // authentication.set(ress.data);
     //* Ref 페이지가 있는 경우.
     const qs = new URLSearchParams(location.search);

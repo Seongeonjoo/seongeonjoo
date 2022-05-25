@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 export const container = css`
   position: relative;
   background-color: #1f2437;
-  height: 100%;
+  height: 100vh;
 `;
 export const content = css`
   position: relative;
@@ -43,6 +43,9 @@ export const singTextbox = css`
   .inputtxt{
     margin-top: 20px;
     width: 160px;
+  }
+  .MuiRadio-root{
+    color: #ccc;
   }
   label{
     color: #fff;
@@ -87,6 +90,17 @@ export const singTextbox = css`
       padding: 15px 14px;
     }
   }
+`;
+
+
+export const btnemail = css`
+    position: relative;
+    top: -64.5px;
+    right: -174.5px;
+    width: 100px;
+    height: 40px;
+    background-color: #4063EC;
+    color: #fff;
 `;
 
 export const signbtn = css`

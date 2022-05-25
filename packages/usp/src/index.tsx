@@ -1,8 +1,9 @@
 import 'bootstrap';
-import ReactDOM from 'react-dom';
 import App from './App';
-import authentication from 'shared/authentication';
+import ReactDOM from 'react-dom';
 import { fetchRefreshToken } from '~/fetches';
+import authentication from 'shared/authentication';
+
 const start = () => {
   ReactDOM.render(<App />, document.getElementById('root'));
 };

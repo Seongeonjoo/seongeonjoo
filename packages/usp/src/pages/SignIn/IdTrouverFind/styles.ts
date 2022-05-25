@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 export const container = css`
   position: relative;
   background-color: #1f2437;
-  height: 100%;
+  height: 100vh;
 `;
 export const content = css`
   position: relative;
