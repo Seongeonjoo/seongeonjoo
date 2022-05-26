@@ -2,13 +2,14 @@
 import React, { useState } from "react"
 import * as styles from '../../Notice/styles';
 import { createTheme } from '@mui/material/styles';
-import { Box, Stack, TextField, Button, InputAdornment } from '@mui/material';
+import { Box, Stack, TextField, Button, InputAdornment, Typography } from '@mui/material';
 import BreadCrumb from "~/components/BreadCrumb";
 import { NavLink } from "react-router-dom";
 import { CustomRadioButtons, CustomButton } from 'shared/components/ButtonComponents';
 import { Modalfront } from 'shared/components/ModalComponents';
 
 function MemberInfoMdf() {
+  //모달1
   const Modalform01 = () => {
     type modalType = 'normal' | 'confirm';
     const [open, setOpen] = useState(false);
@@ -82,6 +83,7 @@ function MemberInfoMdf() {
       </>
     );
   };
+  //모달2
   const Modalform02 = () => {
     type modalType = 'normal' | 'confirm';
     const [open, setOpen] = useState(false);
@@ -207,6 +209,7 @@ function MemberInfoMdf() {
       </>
     );
   };
+  //모달3
   const Modalform03 = () => {
     type modalType = 'normal' | 'confirm';
     const [open, setOpen] = useState(false);
@@ -262,6 +265,51 @@ function MemberInfoMdf() {
             </Stack>
           </Box>
         </Modalfront>
+      </>
+    );
+  };
+  //비밀번호확인영역 컴포넌트 
+  const SnsLogin = () => {
+    return (
+      <>
+        <Box css={styles.login_cont}>
+          <div className="input_form">
+            <dl>
+              <dt>아이디</dt>
+              <dd>abc***</dd>
+            </dl>
+            <dl>
+              <dt>비밀번호입력</dt>
+              <dd>
+                <TextField
+                  id="name" 
+                  variant="outlined"
+                  fullWidth
+                />
+              </dd>
+            </dl>
+          </div>
+          <Stack justifyContent={'center'} direction={'row'} sx={{marginTop:"40px"}}>
+            <CustomButton label={'확인'} type={'listBack'} color={'primary'}/>
+          </Stack>
+          <div className="txt_line">
+            <hr/><span>또는</span><hr/>
+          </div>
+          <Box css={styles.box_type}>
+            <div className="snsbox">
+              <Typography
+                variant="h6" component="h6"
+                color="text.primary"
+              >SNS로 인증하기</Typography>
+              <p>연결된 SNS로 간편하게 인증하세요.</p>
+              <Stack spacing={4} direction="row" css={styles.snsicon}>
+                <button className="kakao"></button>
+                <button className="naver"></button>
+                <button className="google"></button>
+              </Stack>
+            </div>
+          </Box>
+        </Box>
       </>
     );
   };
@@ -359,6 +407,8 @@ function MemberInfoMdf() {
                 <NavLink to="/">회원탈퇴</NavLink>
               </Box>
             </Box>
+            {/* 비밀번호 확인영역 */}
+            {/* <SnsLogin/> */}
         </div>
       </Box>
     </div>
@@ -367,6 +417,3 @@ function MemberInfoMdf() {
 
 export default MemberInfoMdf;
 
-function setData(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
