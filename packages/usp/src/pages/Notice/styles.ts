@@ -79,8 +79,30 @@ export const tagstyle = css`
 export const detal_list = css`
   margin: 0 auto;
   max-width: 1260px;
+  .mb10{
+    margin-bottom: 10px;
+  }
   .modalbtn{
     background-color:#ccc;
+  }
+  .date{
+    margin: 10px 0 0;
+  }
+  .right_tag{
+    position:absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #222;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.64px;
+    & .blue{
+      color: #4063ec;
+    }
+    & .green{
+      color: #1ccdcc;
+    }
   }
   .sub_tit {
     .MuiTypography-root {
@@ -120,6 +142,13 @@ export const detal_list = css`
       background-color: #4063ec;
       color: #fff;
     }
+    .item{
+      background-color: #f5f5f5;
+    }
+    .wh{
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
   }
   .tit_body {
     display: flex;
@@ -147,6 +176,9 @@ export const detal_list = css`
   .MuiListItem-root {
     padding: 10px 0;
   }
+  .MuiListItemText-root {
+    padding-right: 80px;
+  }
   .Check_listbox {
     .MuiFormControl-root{
       width: 100%;
@@ -169,6 +201,10 @@ export const detal_list = css`
     }
   }
   @media (min-width: 320px) and (max-width: 1000px) {
+    .right_tag{
+      right: 15px;
+      font-size: 14px;
+    }
     .sub_tit {
       .MuiTypography-root {
         font-size: 24px;
@@ -233,6 +269,48 @@ export const detal_list = css`
           }
         }
       }
+    }
+  }
+`;
+
+export const login_cont = css`
+  max-width: 460px;
+  margin: 0 auto;
+  .input_form{
+    dl{
+      display: flex;
+      height: 48px;
+      margin-bottom: 10px;
+      align-items: center;
+      max-width: 100%;
+      dt{
+        flex: 0 0 40%;
+      }
+      dd{
+        flex: 0 0 60%;
+        margin: 0;
+        .MuiOutlinedInput-root{
+          height: 48px;
+          min-width: 100%;
+        }
+      }
+    }
+  }
+  .txt_line{
+    display: flex;
+    color: #e0e0e0;
+    margin: 40px 0;
+    hr{
+      border-top: 1px solid #e0e0e0;
+      flex: 1;
+      border-bottom: 0;
+    }
+    span{
+      display: inline-block;
+      margin: 0 10px;
+      height: 24px;
+      width: 32px;
+      letter-spacing: -0.64px;
     }
   }
 `;
@@ -1084,14 +1162,102 @@ export const table_02 = css`
   }
 `;
 
-export const table03 = css`
-  max-width: 940px;
-  margin: 0 auto;
+export const table04 = css`
+  max-width: 100%;
   letter-spacing: -0.64px;
+  .MuiTypography-h6{
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
   table {
     border-top: 1px solid #222;
     width: 100%;
     border-spacing: 0;
+    margin-bottom: 40px;
+    tr {
+      display: flex;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    th {
+      padding: 20px 20px;
+      text-align: left;
+      width: 20%;
+      background-color: #f5f5f5;
+    }
+    td {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      padding: 0 20px;
+      line-height: 3.5;
+      align-items: center;
+      &.table_input{
+        padding: 6px 8px;
+        .MuiInputBase-root{
+          height: 48px;
+        }
+      }
+      .blue{
+        color:#4063ec;
+        &:after {
+          content: '';
+          width: 8px;
+          height: 11px;
+          margin-left: 9px;
+          display: inline-block;
+          background: url('/images/common/gt_blue.png') no-repeat;
+        }
+      }
+      .MuiFormGroup-root{
+        width: 250px;
+        justify-content: space-between;
+      }
+    }
+  }
+  .blue{
+    color:#4063ec;
+    &:after {
+      content: '';
+      width: 8px;
+      height: 11px;
+      margin-left: 9px;
+      display: inline-block;
+      background: url('/images/common/gt_blue.png') no-repeat;
+    }
+  }
+  @media (min-width: 320px) and (max-width: 1000px) {
+    margin-bottom: 40px;
+    table {
+      margin-bottom: 15px;
+      th {
+      width: 40%;
+      }
+      td {
+        width: 60%;
+        &.table_input{
+          padding: 6px 8px;
+          .MuiInputBase-root{
+            height: 48px;
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const table03 = css`
+  max-width: 940px;
+  margin: 0 auto;
+  letter-spacing: -0.64px;
+  .MuiTypography-h6{
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  table {
+    border-top: 1px solid #222;
+    width: 100%;
+    border-spacing: 0;
+    margin-bottom: 40px;
     tr {
       display: flex;
       border-bottom: 1px solid #e0e0e0;
@@ -1233,7 +1399,7 @@ export const detal_img = css`
   }
   .txt_box {
     margin-top: 30px;
-    margin-bottom: 130px;
+    margin-bottom: 60px;
     line-height: 1.63;
     letter-spacing: -0.64px;
   }
@@ -1243,7 +1409,7 @@ export const box_type = css`
   width: 100%;
   border-radius: 10px;
   background-color: #f5f5f5;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   padding: 24px 40px;
   font-size: 18px;
   line-height: 1.67;
@@ -1283,6 +1449,19 @@ export const box_type = css`
       margin-right: 30px;
     }
   }
+  .snsbox{
+    text-align: center;
+    .MuiTypography-h6{
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: -0.8px;
+    }
+    > p{
+      line-height: 1.75;
+      letter-spacing: -0.64px;
+      font-size: 16px;
+    }
+  }
   @media (min-width: 320px) and (max-width: 1000px) {
     .MuiStack-root {
       display: block;
@@ -1309,10 +1488,60 @@ export const box_type = css`
     }
   }
 `;
+//sns icon
+export const snsicon = css`
+  margin: 0 auto;
+  width: max-content;
+  button{
+    border-radius: 50px;
+    min-width:50px;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    &.kakao{background: url('/images/common/kakao_icon.png')}
+    &.naver{background: url('/images/common/naver_icon.png')}
+    &.google{background: url('/images/common/google_icon.png')}
+  }
+`
+
+//답변박스
+export const qna_box = css`
+  background-color: #f2f3f8;
+  padding: 30px 40px;
+  border-top: 1px solid #1f2437;
+  dl{
+    display: flex;
+    &+ dl {
+      margin-top: 10px;
+    }
+    dt {
+      min-width: 62px;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: -0.72px;
+      &:before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+        display: inline-block;
+        background: url('/images/common/icon_gna.png') no-repeat;
+      }
+    }
+    dd{
+      margin-left: 62px;
+      line-height: 1.75;
+      letter-spacing: -0.64px;
+      .date{
+        margin-top: 33px;
+      }
+    }
+  }
+  
+`;
 
 // 이전 다음 리스트 페이지네이션 버튼
 export const bottom_list = css`
-  margin-top: 20px;
   margin-bottom: 40px;
   padding-top: 0;
   border-top: 1px solid #ccc;
@@ -1729,17 +1958,20 @@ export const event_list = css`
 `;
 
 export const picker_card = css`
-  margin-top: 20px;
+  display: flex;
+  max-width: 780px;
+  margin: 20px auto 0;
+  background-color: #fff;
+  border-radius: 10px;
+  border: solid 1px #e0e0e0;
+  color: #333;
+  text-align: center;
   dl {
-    font-family: NotoSansCJKKR;
-    max-width: 780px;
+    border-right: 1px solid #ccc;
     width: 100%;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-    border: solid 1px #e0e0e0;
-    color: #333;
-    text-align: center;
+    &:last-of-type{
+      border: none;
+    }
     dt{
       border-bottom: 1px solid #ccc;
       font-size: 18px;
@@ -1751,10 +1983,24 @@ export const picker_card = css`
       text-align: center;
       margin-left: 0;
       display: inline-block;
-      padding: 20px 0;
+      padding: 20px;
+      width: 100%;
+      .MuiInputBase-root{
+        height: 48px;
+      }
+      .MuiFormControl-root{
+        width: 100%;
+      }
+      .MuiFormControlLabel-root{
+        flex: 0 0 48%;
+        height: 30px;
+        margin: 0;
+      }
     }
   }
   @media (min-width: 320px) and (max-width: 1000px) {
+    border: none;
+    flex-direction: column;
     .MuiInputBase-root{
       height: 46px;
     }
@@ -1768,10 +2014,12 @@ export const picker_card = css`
       }
       dd{
         padding: 16px 0 0;
+        margin-bottom: 16px;
       }
     }
   }
 `;
+
 
 export const inputBox = css`
   position: relative;
@@ -1918,11 +2166,19 @@ export const modal_inputBox = css`
     flex: 1;
     .MuiInputBase-root{
       height: 48px;
+      .MuiTypography-root{
+        color: #1ccdcc;
+      }
       .MuiInputBase-input:-webkit-autofill{
         padding: 12px 14px;
       }
     }
+    .MuiFormHelperText-root{
+      color: #1ccdcc;
+      font-size: 14px;
+    }
   }
+
   label{
     height: 48px;
     color: #222;
