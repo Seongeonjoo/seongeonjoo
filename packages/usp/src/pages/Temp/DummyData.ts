@@ -48,6 +48,13 @@ export const pblancSttuss: DefaultCheckBoxProps[] = [
   { label: '접수중단' },
   { label: '접수마감' },
 ];
+
+export const infoState: DefaultCheckBoxProps[] = [
+  { label: '전체' },
+  { label: '접수' },
+  { label: '답변완료' },
+];
+
 export const applyMberType: DefaultCheckBoxProps[] = [
   { label: '개인' },
   { label: '개인사업자' },
